@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
 import com.asset.management.VO.PaginationVO;
+import com.asset.management.VO.mapping.AssetMapperInterface;
 import com.asset.management.VO.mapping.EmployeeMapping;
 import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Status;
@@ -32,12 +33,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private EmployeeMapping mappingObj;
 
 	@Autowired
-	EmployeeMapping map;
+	private AssetMapperInterface map;
 
 	@Override
 	public List<EmployeeVo> selectAll() {
 		final List<Employee> employee = employeeRepository.findAll();
-		return map.employeeListConvert(employee);
+		return mappingObj.employeeListConvert(employee);
 	}
 
 	@Override
@@ -116,25 +117,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return employeeRepository.searchEmployee(pagination.getSearchkey(), pageable);
 	}
 
-//	@Override
-//	public List<AssetVO> getAsset(Long id) {
-//		final String enableStatus = (String.valueOf((Status.Assigned).ordinal()));
-//		return map.assetReConvertion(AssetRepository.findByEmployee(id, enableStatus));
-//	}
+	@Override
+	public List<AssetVO> getAsset(Long id) {
+		final String enableStatus = (String.valueOf((Status.Assigned).ordinal()));
+		return map.assetReConvertion(AssetRepository.findByEmployee(id, enableStatus));
+	}
 
-	@SuppressWarnings("boxing")
 	@Override
 	public List<String> disable(Long login) {// disable lists for update
 		if (login == 0) {// admin
 			return new ArrayList<>(List.of("empNo"));
 		}
 		return new ArrayList<>(List.of("empNo", "designation", "healthCardNo"));
-	}
-
-	@Override
-	public List<AssetVO> getAsset(Long id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

@@ -27,4 +27,8 @@ public interface AssetRepository
 			+ "where ad.asset_id =:assetId and ad.enable_status!='Disabled'", nativeQuery = true)
 	List<Object[]> getAssetDetails(@Param("assetId") Long assetId);
 
+	
+	@Query(value = "select * from asset_details asset where emp_id=:employee and enable_status=:enableStatus", nativeQuery = true)
+	List<AssetEntity> findByEmployee(@Param("employee") Long employee,@Param("enableStatus") String enableStatus);
+
 }
