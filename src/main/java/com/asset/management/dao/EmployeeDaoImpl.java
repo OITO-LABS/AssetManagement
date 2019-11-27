@@ -119,7 +119,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public List<AssetVO> getAsset(Long id) {
-		final String enableStatus = (String.valueOf((Status.Assigned).ordinal()));
+		final String enableStatus = (String.valueOf((Status.Assigned).name()));
 		return map.assetReConvertion(AssetRepository.findByEmployee(id, enableStatus));
 	}
 
