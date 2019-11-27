@@ -49,6 +49,7 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 			final Calendar cal = Calendar.getInstance();
 			asset.setEnableStatus(Status.Assigned);
 			asset.setUpdatedDate(cal.getTime());
+			asset.setEmployeeId(employee.getEmpId());
 			assetRepository.flush();
 			assetAssignEntity.setAssetAssign(asset);
 			assetAssignEntity.setEmployee(employee);

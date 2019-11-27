@@ -66,4 +66,6 @@ public class AssetEntity {
 	@Column(name = "updated_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	Date updatedDate;
+	@Column(name = "employee_details")
+	Long employeeId;
 }

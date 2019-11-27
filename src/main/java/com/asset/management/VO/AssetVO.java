@@ -20,7 +20,7 @@ public class AssetVO {
 	private String msisdnNo;
 	private Status enableStatus;
 	private String productCategory;
-	private EmployeeVo employee;
+	private Long employeeId;
 	private String updatedId;
 	private Date addDate;
 	private Date updatedDate;

@@ -28,7 +28,6 @@ public interface AssetRepository
 	List<Object[]> getAssetDetails(@Param("assetId") Long assetId);
 
 	
-	@Query(value = "select * from asset_details asset where emp_id=:employee and enable_status=:enableStatus", nativeQuery = true)
-	List<AssetEntity> findByEmployee(@Param("employee") Long employee,@Param("enableStatus") String enableStatus);
-
+	@Query(value = "select * from asset_details where employee_details=:id and enable_status=:enableStatus", nativeQuery = true)
+	List<AssetEntity> findByEmployee(@Param("id") Long id, @Param("enableStatus") String enableStatus);
 }

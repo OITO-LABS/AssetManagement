@@ -27,9 +27,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 			@Param("emergencyContact") String string2, @Param("healthCardNo") String healthCardNo,
 			@Param("bloodGroup") String bloodGroup, @Param("empNo") String empNo);
 
-//	@Query(value = "select * from employee_details emp where emp_fname like %?1% or emp_no like %?1%", nativeQuery = true)
-//	Page<Employee> searchEmployee(@Param("searchKey") String searchkey, Pageable pageable);
-
 	@Query(value = "select * from employee_details where enable_status=:status", nativeQuery = true)
 	List<Employee> getEmpNo(@Param("status") String status);
 
