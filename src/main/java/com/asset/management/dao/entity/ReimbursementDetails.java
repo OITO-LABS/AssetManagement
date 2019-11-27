@@ -1,5 +1,7 @@
 package com.asset.management.dao.entity;
 
+import java.math.BigInteger;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +33,7 @@ public class ReimbursementDetails {
 	private ReimbursementTrack reimbursementTrack;
 
 	@Column(name = "reimbursement_bill_date")
-	private String billDate;
+	private BigInteger billDate;
 
 	@Column(name = "reimbursement_description")
 	private String reimbursementDescription;

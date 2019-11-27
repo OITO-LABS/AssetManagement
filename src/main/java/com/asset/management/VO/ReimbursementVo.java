@@ -1,5 +1,7 @@
 package com.asset.management.VO;
 
+import java.math.BigInteger;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,7 +14,7 @@ public class ReimbursementVo {
 	String billDate;
 	String reimbursementDescription;
 	String categoryName;
-	double billNo;
+	BigInteger billNo;
 	double cost;
 
 }

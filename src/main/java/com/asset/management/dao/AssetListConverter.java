@@ -35,20 +35,37 @@ public class AssetListConverter<T> {
 		for (final Object[] result : resultSet) {
 			final AssetDetailsVO asset = new AssetDetailsVO();
 			asset.setAssetId((BigInteger) result[0]);
-			asset.setAssetKey((String) result[1]);
-			asset.setProductCategoryName((String) result[2]);
-			asset.setMacId((String) result[3]);
-			asset.setSimNo((String) result[4]);
-			asset.setMsisdnNO((String) result[5]);
-			asset.setStatus((String) result[6]);
-			asset.setModel((String) result[7]);
-			asset.setEmpId((BigInteger) result[8]);
-			asset.setEmpNo((String) result[9]);
-			asset.setFname((String) result[10]);
-			asset.setLname((String) result[11]);
-			asset.setIssueDate((formatter.format((Date) result[12])).toString());
-			asset.setReturnDate((Date) result[13]);
-			asset.setCause((String) result[14]);
+			if (result[6].equals("Assigned")) {
+				asset.setAssetKey((String) result[1]);
+				asset.setProductCategoryName((String) result[2]);
+				asset.setMacId((String) result[3]);
+				asset.setSimNo((String) result[4]);
+				asset.setMsisdnNO((String) result[5]);
+				asset.setStatus((String) result[6]);
+				asset.setModel((String) result[7]);
+				asset.setEmpId((BigInteger) result[8]);
+				asset.setEmpNo((String) result[9]);
+				asset.setFname((String) result[10]);
+				asset.setLname((String) result[11]);
+				asset.setIssueDate((formatter.format((Date) result[12])).toString());
+				asset.setReturnDate((Date) result[13]);
+				asset.setCause((String) result[14]);
+			} else {
+				asset.setAssetKey((String) result[1]);
+				asset.setProductCategoryName((String) result[2]);
+				asset.setMacId((String) result[3]);
+				asset.setSimNo((String) result[4]);
+				asset.setMsisdnNO((String) result[5]);
+				asset.setStatus((String) result[6]);
+				asset.setModel((String) result[7]);
+				asset.setEmpId(null);
+				asset.setEmpNo(null);
+				asset.setFname(null);
+				asset.setLname(null);
+				asset.setIssueDate(null);
+				asset.setReturnDate(null);
+				asset.setCause(null);
+			}
 			assetDetails.add(asset);
 		}
 		return assetDetails;
@@ -63,7 +80,12 @@ public class AssetListConverter<T> {
 			asset.setEmpNo((String) result[1]);
 			asset.setFname((String) result[2]);
 			asset.setLname((String) result[3]);
-			asset.setIssueDate((formatter.format((Date) result[4])));
+			if (result[4].equals(null)) {
+				asset.setIssueDate(null);
+			} else {
+				asset.setIssueDate((formatter.format((Date) result[4])));
+			}
+
 			asset.setReturnDate((Date) result[5]);
 			asset.setCause((String) result[6]);
 			assetDetails.add(asset);

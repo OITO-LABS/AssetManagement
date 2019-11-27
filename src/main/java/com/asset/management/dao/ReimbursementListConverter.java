@@ -33,7 +33,7 @@ public class ReimbursementListConverter {
 			final ReimbursementVo reimbursementVo = new ReimbursementVo();
 			reimbursementVo.setBillDate((formatter.format((Date) result[2])).toString());
 			reimbursementVo.setReimbursementDescription((String) result[3]);
-			reimbursementVo.setBillNo((int) result[4]);
+			reimbursementVo.setBillNo((BigInteger) result[4]);
 			reimbursementVo.setCost((double) result[5]);
 			reimbursementVo.setCategoryName((String) result[6]);
 			resultSetVO.add(reimbursementVo);
