@@ -44,7 +44,6 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 		final AssetAssignEntity assetAssignEntity = map.assetAssignConvertion(assetAssignVO);
 		final Employee emp = assetAssignEntity.getEmployee();
 		final Employee employee = employeeRepository.findByEmpNo(emp.getEmpNo());
-		System.out.println(employee.getEmpId());
 		if (asset != null && asset.getEnableStatus().equals(Status.Unassigned)) {
 			final Calendar cal = Calendar.getInstance();
 			asset.setEnableStatus(Status.Assigned);
@@ -57,8 +56,8 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 			assetAssignEntity.setAddDate(cal.getTime());
 			assetAssignEntity.setUpdatedDate(cal.getTime());
 			if (assetAssign.saveAndFlush(assetAssignEntity).getId() != null) {
-				response.setStatus("Success");
-				return response;///
+				response.setStatus("success");
+				return response;
 			}
 		}
 		response.setStatus("failed");

@@ -77,17 +77,18 @@ public class AssetListConverter<T> {
 		for (final Object[] result : resultSet) {
 			final AssetDetailsVO asset = new AssetDetailsVO();
 			asset.setAssetId((BigInteger) result[0]);
-			asset.setEmpNo((String) result[1]);
-			asset.setFname((String) result[2]);
-			asset.setLname((String) result[3]);
-			if (result[4].equals(null)) {
+			asset.setEmpId((BigInteger) result[1]);
+			asset.setEmpNo((String) result[2]);
+			asset.setFname((String) result[3]);
+			asset.setLname((String) result[4]);
+			if (result[5].equals(null)) {
 				asset.setIssueDate(null);
 			} else {
-				asset.setIssueDate((formatter.format((Date) result[4])));
+				asset.setIssueDate((formatter.format((Date) result[5])));
 			}
 
-			asset.setReturnDate((Date) result[5]);
-			asset.setCause((String) result[6]);
+			asset.setReturnDate((Date) result[6]);
+			asset.setCause((String) result[7]);
 			assetDetails.add(asset);
 		}
 		return assetDetails;

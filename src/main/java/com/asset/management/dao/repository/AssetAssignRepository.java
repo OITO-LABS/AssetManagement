@@ -39,7 +39,7 @@ public interface AssetAssignRepository extends JpaRepository<AssetAssignEntity, 
 	Page findAssetDetails(@Param("pageable") Pageable pageable);
 
 	@Query(value = ""
-			+ "select ad.asset_id as assetId,e.emp_no as empNo,e.emp_fname as fname,e.emp_lname  as lname,ds.issue_date as issueDate,ds.return_date as returnDate,ds.cause as cause "
+			+ "select ad.asset_id as assetId,e.emp_id as empId,e.emp_no as empNo,e.emp_fname as fname,e.emp_lname  as lname,ds.issue_date as issueDate,ds.return_date as returnDate,ds.cause as cause "
 			+ "		from asset_details ad " + "		left join device_assignment ds on ad.asset_id=ds.asset_id "
 			+ "		left join employee_details e on ds.emp_id=e.emp_id "
 			+ "where ad.asset_id=:assetId", nativeQuery = true)
