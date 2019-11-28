@@ -57,8 +57,8 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 			assetAssignEntity.setAddDate(cal.getTime());
 			assetAssignEntity.setUpdatedDate(cal.getTime());
 			if (assetAssign.saveAndFlush(assetAssignEntity).getId() != null) {
-				response.setStatus("success");
-				return response;
+				response.setStatus("Success");
+				return response;///
 			}
 		}
 		response.setStatus("failed");
