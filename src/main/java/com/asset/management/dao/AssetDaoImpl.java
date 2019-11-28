@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.asset.management.VO.AssetDetailsVO;
@@ -53,7 +54,7 @@ public class AssetDaoImpl implements AssetDao {
 		final AssetEntity assetEntity = map.assetConvertion(assetVO);
 		final ResponseVO response = validator.addValidation(assetEntity);
 
-		if (response.getStatus().equals("Success")) {
+		if (response.getStatus().equals("success")) {
 
 			final Calendar cal = Calendar.getInstance();
 			assetEntity.setEnableStatus(Status.Unassigned);
@@ -85,7 +86,7 @@ public class AssetDaoImpl implements AssetDao {
 	@Override
 	public PageData getAssetDetails(PaginationVO paginationVO) {
 
-		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit());
+		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit(),Sort.by("asset_key").descending());
 		final Optional<String> productName = paginationVO.getSearchkey();
 		final Page asset = assetAssignRepository.findSelectedField(productName, pageable);
 
