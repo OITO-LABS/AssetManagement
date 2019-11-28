@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.asset.management.VO.AssetAssignVO;
+import com.asset.management.VO.ListPageData;
+import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.VO.mapping.AssetAssignMapper;
 import com.asset.management.dao.entity.AssetAssignEntity;
@@ -95,6 +97,12 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	public List<AssetAssignVO> getAll(Long empId) {
 		final List<AssetAssignEntity> assetAssignEntity = assetAssign.findByEmployee(empId);
 		return map.assetAssignReConvertion1(assetAssignEntity);
+	}
+
+	@Override
+	public ListPageData searchEmployeeDate(PageViewVo page) {
+		
+		return null;
 	}
 
 }

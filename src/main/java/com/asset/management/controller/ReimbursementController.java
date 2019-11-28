@@ -15,7 +15,7 @@ import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ReimbursementTrackVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.service.ReimbursementService;
-// Reimbursement    uhuugygygyyg
+
 @RestController
 @RequestMapping("api/reimbursement")
 public class ReimbursementController {
@@ -67,4 +67,19 @@ public class ReimbursementController {
 		return reimbursementService.reimbursementGetEmpDetails(page);
 
 	}
+	
+	@PostMapping("search-emp-id")
+	public ListPageData searchEmployeeId(@RequestBody PageViewVo page) {
+
+		return reimbursementService.searchEmployee(page);
+
+	}
+	
+	@PostMapping("search-emp-id-date")
+	public ListPageData searchEmployeeDate(@RequestBody PageViewVo page) {
+
+		return reimbursementService.searchEmployeeDate(page);
+	}
+	
+	
 }

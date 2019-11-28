@@ -23,4 +23,8 @@ public interface ReimbursementService {
 	ListPageData reimbursementGetEmpDetails(@RequestBody PageViewVo page);
 
 	ListPageData viewData(PageViewVo page);
+	
+	ListPageData searchEmployee(@RequestBody PageViewVo page);
+	
+	ListPageData searchEmployeeDate(@RequestBody PageViewVo page);
 }
