@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.asset.management.VO.AssetDetailsVO;
@@ -80,7 +81,7 @@ public class AssetDaoImpl implements AssetDao {
 	@Override
 	public PageData getAssetDetails(PaginationVO paginationVO) {
 
-		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit());
+		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit(),Sort.by("asset_key").descending());
 		final Optional<String> productName = paginationVO.getSearchkey();
 		final Page asset = assetAssignRepository.findSelectedField(productName, pageable);
 

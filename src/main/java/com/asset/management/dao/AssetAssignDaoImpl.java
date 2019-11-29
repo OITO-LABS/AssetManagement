@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.asset.management.VO.AssetAssignVO;
+import com.asset.management.VO.ListPageData;
+import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.VO.mapping.AssetAssignMapper;
 import com.asset.management.dao.entity.AssetAssignEntity;
@@ -42,7 +44,10 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 		final AssetAssignEntity assetAssignEntity = map.assetAssignConvertion(assetAssignVO);
 		final Employee emp = assetAssignEntity.getEmployee();
 		final Employee employee = employeeRepository.findByEmpNo(emp.getEmpNo());
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 8c0dffa4684cb42b01bf012ff424881869d23a75
 		if (asset != null && asset.getEnableStatus().equals(Status.Unassigned)) {
 			final Calendar cal = Calendar.getInstance();
 			asset.setEnableStatus(Status.Assigned);
@@ -56,7 +61,11 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 			assetAssignEntity.setUpdatedDate(cal.getTime());
 			if (assetAssign.saveAndFlush(assetAssignEntity).getId() != null) {
 				response.setStatus("success");
+<<<<<<< HEAD
 				return response;///
+=======
+				return response;
+>>>>>>> 8c0dffa4684cb42b01bf012ff424881869d23a75
 			}
 		}
 		response.setStatus("failed");
@@ -93,6 +102,12 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	public List<AssetAssignVO> getAll(Long empId) {
 		final List<AssetAssignEntity> assetAssignEntity = assetAssign.findByEmployee(empId);
 		return map.assetAssignReConvertion1(assetAssignEntity);
+	}
+
+	@Override
+	public ListPageData searchEmployeeDate(PageViewVo page) {
+		
+		return null;
 	}
 
 }

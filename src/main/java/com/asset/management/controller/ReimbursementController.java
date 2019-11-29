@@ -49,4 +49,19 @@ public class ReimbursementController {
 		return reimbursementService.reimbursementGetEmpDetails(page);
 
 	}
+	
+	@PostMapping("search-emp-id")
+	public ListPageData searchEmployeeId(@RequestBody PageViewVo page) {
+
+		return reimbursementService.searchEmployee(page);
+
+	}
+	
+	@PostMapping("search-emp-id-date")
+	public ListPageData searchEmployeeDate(@RequestBody PageViewVo page) {
+
+		return reimbursementService.searchEmployeeDate(page);
+	}
+	
+	
 }
