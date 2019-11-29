@@ -1,5 +1,7 @@
 package com.asset.management.service;
+
 import org.apache.log4j.spi.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +18,7 @@ public class LoginServiceImpl implements LoginService {
     private MailService emailService;
 	
 	@Autowired
-	
-	
-	//private static final org.slf4j.Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
-	
+
 	@Override
 	public void sendmail(Mail obj) {
 		 Mail mail = new Mail();
@@ -30,14 +29,20 @@ public class LoginServiceImpl implements LoginService {
 	        emailService.sendSimpleMessage(mail);		
 	}
 
+
+	public void resetPassword() {
+
+	}
+	
 	
 	@Override
-	public void resetPassword() {
+	public void validatePassword() {
 
 	}
 
 	@Override
 	public String generatePasswordToken(String value) {
+
 
 		try {
 
@@ -53,12 +58,7 @@ public class LoginServiceImpl implements LoginService {
 
 		catch (NoSuchAlgorithmException e) {  //
 			throw new RuntimeException(e);
-		}
-	}
-
-	@Override
-	public void validatePassword() {
-
+		}		
 	}
 
 
