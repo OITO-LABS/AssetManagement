@@ -17,23 +17,30 @@ import com.asset.management.service.LoginService;
 @RequestMapping("login")
 public class LoginController {
 	@Autowired
-	    private LoginService loginService;
-	   
-	   @PostMapping
-	   public void login() {
-	   }
-	   
-	   @PostMapping("/reset")
-	   public ResponseVO resetPassword(@RequestBody LoginVo logVo) {
-		   return null;
-	   }
-	@PostMapping("/send-mail")
-	 public void mail(@RequestBody Mail obj) {
 
-		Long empId=(long) 1000;
-		String str=empId.toString();
-		obj.setToken(loginService.generatePasswordToken(str));
-		loginService.sendmail(obj);   
-	     
-	    }
-}
+	private LoginService loginService;
+
+	@PostMapping
+	public void login() {
+	}
+
+	@PostMapping("/reset")
+	public void resetPassword() {
+
+	}
+
+	@PostMapping("/send-mail")
+	public ResponseVO mail(@RequestBody Mail obj) {
+		final ResponseVO status = new ResponseVO();
+		try {
+			Long empId = (long) 1000;
+			String str = empId.toString();
+			obj.setToken(loginService.generatePasswordToken(str));
+			loginService.sendmail(obj);
+			status.setStatus("success");
+		} catch (Exception ex) {
+			status.setStatus("Failed!");
+			status.setMessage(ex.getMessage());
+		}
+		return status;
+	}}

@@ -9,4 +9,5 @@ public interface LoginService {
 	void sendmail(Mail obj);
 	String generatePasswordToken(String value);
 	Long decryption(String token);
+	String generatePasswordToken(Long empId);
 }

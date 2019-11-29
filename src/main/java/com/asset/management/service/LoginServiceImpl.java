@@ -1,4 +1,5 @@
 package com.asset.management.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,21 +35,19 @@ public class LoginServiceImpl implements LoginService {
 	        emailService.sendSimpleMessage(mail);		
 	}
 
-
 	public void resetPassword(LoginVo logVO) {
 		String value=logVO.getPassword();
 		String token=logVO.getToken();
 		logVO.setPassword(generatePasswordToken(value));
 		logDao.update(logVO);
 	}
-
 	@Override
-	public String generatePasswordToken(String value) {
+	public String generatePasswordToken(String empId) {
 
 		try {
 
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] messageDigest = md.digest((value.toString()).getBytes());
+            byte[] messageDigest = md.digest((empId.toString()).getBytes());
             BigInteger no = new BigInteger(1, messageDigest);
             String hashtext = no.toString(16);
             while (hashtext.length() < 32) {
@@ -72,6 +71,12 @@ public class LoginServiceImpl implements LoginService {
 	public Long decryption(String token) {
 		Long empId=(long) 11;
 		return empId;
+	}
+
+	@Override
+	public String generatePasswordToken(Long empId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
