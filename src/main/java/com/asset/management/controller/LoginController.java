@@ -27,8 +27,14 @@ public class LoginController {
 	   }
 	@PostMapping("/send-mail")
 	 public void mail(@RequestBody Mail obj) {
+<<<<<<< HEAD
+		Long empId=(long) 1000;
+		String str=empId.toString();
+		obj.setToken(loginService.generatePasswordToken((long) 1000));
+=======
 		obj.setToken(loginService.generatePasswordToken((String) 1000));
+>>>>>>> 6f172681cfb040eac9a0b8d3394bb0502017d250
 		   loginService.sendmail(obj);  
 	     
-	    }
+	    }///
 }
