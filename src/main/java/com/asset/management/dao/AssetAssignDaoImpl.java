@@ -3,11 +3,12 @@ package com.asset.management.dao;
 import java.util.Calendar;
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.asset.management.VO.AssetAssignVO;
+import com.asset.management.VO.ListPageData;
+import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.VO.mapping.AssetAssignMapper;
 import com.asset.management.dao.entity.AssetAssignEntity;
@@ -23,7 +24,6 @@ import lombok.ToString;
 @ToString
 @Component
 public class AssetAssignDaoImpl implements AssetAssignDao {
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetDao.class);
 	@Autowired
 	AssetAssignMapper map;
 
@@ -37,14 +37,12 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	AssetAssignRepository assetAssign;
 
 	// Assign asset to an employee.
-	@Override
 	public ResponseVO assetAssigned(Long assetId, AssetAssignVO assetAssignVO) {
 		final ResponseVO response = new ResponseVO();
 		final AssetEntity asset = assetRepository.findByAssetId(assetId);
 		final AssetAssignEntity assetAssignEntity = map.assetAssignConvertion(assetAssignVO);
 		final Employee emp = assetAssignEntity.getEmployee();
 		final Employee employee = employeeRepository.findByEmpNo(emp.getEmpNo());
-		System.out.println(employee.getEmpId());
 		if (asset != null && asset.getEnableStatus().equals(Status.Unassigned)) {
 			final Calendar cal = Calendar.getInstance();
 			asset.setEnableStatus(Status.Assigned);
@@ -66,7 +64,6 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	}
 
 	// Return a device
-	@Override
 	public ResponseVO returnDevice(Long assetId, AssetAssignVO assetAssignVO) {
 		final ResponseVO response = new ResponseVO();
 		final AssetEntity asset = assetRepository.findByAssetId(assetId);
@@ -91,10 +88,14 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	}
 
 	// Fetch all the asset details.
-	@Override
 	public List<AssetAssignVO> getAll(Long empId) {
 		final List<AssetAssignEntity> assetAssignEntity = assetAssign.findByEmployee(empId);
 		return map.assetAssignReConvertion1(assetAssignEntity);
+	}
+
+	public ListPageData searchEmployeeDate(PageViewVo page) {
+		
+		return null;
 	}
 
 }

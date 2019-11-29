@@ -4,11 +4,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.asset.management.VO.AssetDetailsVO;
@@ -42,18 +42,13 @@ public class AssetDaoImpl implements AssetDao {
 	@Autowired
 	private Validation validator;
 
-	private String other;
-
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetDao.class);
-
 	// Add / Register a new device.
 
-	@Override
 	public ResponseVO create(AssetVO assetVO) {
 		final AssetEntity assetEntity = map.assetConvertion(assetVO);
 		final ResponseVO response = validator.addValidation(assetEntity);
 
-		if (response.getStatus().equals("Success")) {
+		if (response.getStatus().equals("success")) {
 
 			final Calendar cal = Calendar.getInstance();
 			assetEntity.setEnableStatus(Status.Unassigned);
@@ -74,7 +69,6 @@ public class AssetDaoImpl implements AssetDao {
 
 	}
 
-	@Override
 	public List<ProductCategoryVO> productCategoryDetails() {
 		final List<ProductCategoryEntity> productEntity = productRepository.findAll();
 		return productMap.assetReConvertion(productEntity);
@@ -82,10 +76,9 @@ public class AssetDaoImpl implements AssetDao {
 
 	// Provide asset details using pagination.
 
-	@Override
 	public PageData getAssetDetails(PaginationVO paginationVO) {
 
-		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit());
+		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit(),Sort.by("asset_key").descending());
 		final Optional<String> productName = paginationVO.getSearchkey();
 		final Page asset = assetAssignRepository.findSelectedField(productName, pageable);
 
@@ -99,7 +92,6 @@ public class AssetDaoImpl implements AssetDao {
 		data.setSize(asset.getSize());
 		data.setTotalElements(asset.getTotalElements());
 		data.setTotalPages(asset.getTotalPages());
-		logger.info("{ListConverter.pageConvertion(asset.getContent())}");
 		return data;
 
 	}
@@ -107,7 +99,6 @@ public class AssetDaoImpl implements AssetDao {
 	// Delete a an asset by updating the status fields of asset_details and
 	// device_assignment table.
 
-	@Override
 	public ResponseVO deleteAsset(Long id) {
 		final ResponseVO response = new ResponseVO();
 		final AssetEntity asset = assetRepository.findByAssetId(id);
@@ -137,13 +128,13 @@ public class AssetDaoImpl implements AssetDao {
 
 	// Retrieve the details of a particular asset by id.
 
-	@Override
+
 	public List<AssetDetailsVO> getById(Long id) {
 		final List<Object[]> resultSet = assetRepository.getAssetDetails(id);
 		return AssetListConverter.assetConverter(resultSet);
 	}
 
-	@Override
+
 	public PageData getAllAsset(PaginationVO paginationVO) {
 		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit());
 		final Page asset = assetAssignRepository.findAssetDetails(pageable);
@@ -156,17 +147,16 @@ public class AssetDaoImpl implements AssetDao {
 		data.setSize(asset.getSize());
 		data.setTotalElements(asset.getTotalElements());
 		data.setTotalPages(asset.getTotalPages());
-		logger.info("{ListConverter.pageConvertion(asset.getContent())}");
 		return data;
 	}
 
-	@Override
+	
 	public List<AssetDetailsVO> getAssetHistory(Long assetId) {
 		final List<Object[]> assetHistory = assetAssignRepository.findAssetHistory(assetId);
 		return AssetListConverter.historyConverter(assetHistory);
 	}
 
-	@Override
+	
 	public ResponseVO updateAssetDetails(Long assetId, AssetVO assetVO) {
 
 		final AssetEntity assetEntity = map.assetConvertion(assetVO);
@@ -189,7 +179,7 @@ public class AssetDaoImpl implements AssetDao {
 		return response;
 	}
 
-	@Override
+	
 	public AssetVO getAssetById(Long assetId) {
 		final AssetEntity asset = assetRepository.findByAssetId(assetId);
 		return map.assetReConvertion(asset);

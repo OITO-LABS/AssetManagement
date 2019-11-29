@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
+import com.asset.management.VO.ListPageData;
+import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.PaginationVO;
 import com.asset.management.dao.EmployeeDao;
 import com.asset.management.dao.entity.Employee;
@@ -68,4 +71,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<String> disable(Long login) {
 		return daoobj.disable(login);
 	}
+
+	
+	
+
 }
