@@ -10,11 +10,10 @@ public class Mail {
     private String to;
     private String subject;
     private String content;
-    private String username;
-    private String password;
+    private String token;
     public Mail() {
     }
-
+///
     public Mail(String from, String to, String subject, String content) {
         this.from = from;
         this.to = to;
