@@ -1,10 +1,6 @@
 package com.asset.management.service;
-
-import org.apache.log4j.spi.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.asset.management.VO.Mail;
 
 import java.math.BigInteger;
@@ -17,8 +13,8 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
     private MailService emailService;
 	
-	@Autowired
-
+	//private static final org.slf4j.Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
+	
 	@Override
 	public void sendmail(Mail obj) {
 		 Mail mail = new Mail();
@@ -33,16 +29,9 @@ public class LoginServiceImpl implements LoginService {
 	public void resetPassword() {
 
 	}
-	
-	
-	@Override
-	public void validatePassword() {
-
-	}
 
 	@Override
 	public String generatePasswordToken(String value) {
-
 
 		try {
 
@@ -61,5 +50,9 @@ public class LoginServiceImpl implements LoginService {
 		}		
 	}
 
+	@Override
+	public void validatePassword() {
+
+	}
 
 }
