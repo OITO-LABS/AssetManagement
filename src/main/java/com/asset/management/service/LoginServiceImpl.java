@@ -1,5 +1,5 @@
 package com.asset.management.service;
-
+import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 @Component
 public class LoginServiceImpl implements LoginService {
+
 	@Autowired
     private MailService emailService;
 	
@@ -26,6 +27,7 @@ public class LoginServiceImpl implements LoginService {
 	        emailService.sendSimpleMessage(mail);		
 	}
 
+<<<<<<< HEAD
 	
 	@Override
 	public void resetPassword() {
@@ -33,11 +35,27 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	public String generatePasswordToken(Long empId) {
+=======
+
+	public void resetPassword() {
+
+	}
+	
+	
+	@Override
+	public void validatePassword() {
+
+	}
+
+	@Override
+	public String generatePasswordToken(String value) {
+
+>>>>>>> 6f172681cfb040eac9a0b8d3394bb0502017d250
 
 		try {
 
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] messageDigest = md.digest((empId.toString()).getBytes());
+            byte[] messageDigest = md.digest((value.toString()).getBytes());
             BigInteger no = new BigInteger(1, messageDigest);
             String hashtext = no.toString(16);
             while (hashtext.length() < 32) {
@@ -48,12 +66,15 @@ public class LoginServiceImpl implements LoginService {
 
 		catch (NoSuchAlgorithmException e) {  //
 			throw new RuntimeException(e);
-		}
+		}		
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void validatePassword() {
 
 	}
+=======
+>>>>>>> 6f172681cfb040eac9a0b8d3394bb0502017d250
 
 }
