@@ -3,7 +3,6 @@ package com.asset.management.dao;
 import java.util.Calendar;
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,6 @@ import lombok.ToString;
 @ToString
 @Component
 public class AssetAssignDaoImpl implements AssetAssignDao {
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetDao.class);
 	@Autowired
 	AssetAssignMapper map;
 
@@ -44,7 +42,7 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 		final AssetAssignEntity assetAssignEntity = map.assetAssignConvertion(assetAssignVO);
 		final Employee emp = assetAssignEntity.getEmployee();
 		final Employee employee = employeeRepository.findByEmpNo(emp.getEmpNo());
-		System.out.println(employee.getEmpId());
+		
 		if (asset != null && asset.getEnableStatus().equals(Status.Unassigned)) {
 			final Calendar cal = Calendar.getInstance();
 			asset.setEnableStatus(Status.Assigned);
@@ -57,7 +55,7 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 			assetAssignEntity.setAddDate(cal.getTime());
 			assetAssignEntity.setUpdatedDate(cal.getTime());
 			if (assetAssign.saveAndFlush(assetAssignEntity).getId() != null) {
-				response.setStatus("Success");
+				response.setStatus("success");
 				return response;///
 			}
 		}

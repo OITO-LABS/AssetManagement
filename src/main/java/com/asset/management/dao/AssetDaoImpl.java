@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,10 +41,6 @@ public class AssetDaoImpl implements AssetDao {
 	@Autowired
 	private Validation validator;
 
-	private String other;
-
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetDao.class);
-
 	// Add / Register a new device.
 
 	@Override
@@ -53,7 +48,7 @@ public class AssetDaoImpl implements AssetDao {
 		final AssetEntity assetEntity = map.assetConvertion(assetVO);
 		final ResponseVO response = validator.addValidation(assetEntity);
 
-		if (response.getStatus().equals("Success")) {
+		if (response.getStatus().equals("success")) {
 
 			final Calendar cal = Calendar.getInstance();
 			assetEntity.setEnableStatus(Status.Unassigned);
@@ -99,7 +94,6 @@ public class AssetDaoImpl implements AssetDao {
 		data.setSize(asset.getSize());
 		data.setTotalElements(asset.getTotalElements());
 		data.setTotalPages(asset.getTotalPages());
-		logger.info("{ListConverter.pageConvertion(asset.getContent())}");
 		return data;
 
 	}
@@ -156,7 +150,6 @@ public class AssetDaoImpl implements AssetDao {
 		data.setSize(asset.getSize());
 		data.setTotalElements(asset.getTotalElements());
 		data.setTotalPages(asset.getTotalPages());
-		logger.info("{ListConverter.pageConvertion(asset.getContent())}");
 		return data;
 	}
 
