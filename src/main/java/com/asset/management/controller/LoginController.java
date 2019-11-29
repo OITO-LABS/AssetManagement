@@ -25,7 +25,6 @@ public class LoginController {
 	   public void resetPassword() {
 		   
 	   }
-///
 	@PostMapping("/send-mail")
 	 public void mail(@RequestBody Mail obj) {
 		String token=loginService.generatePasswordToken((long) 1000);
