@@ -7,10 +7,6 @@ public interface LoginDao {
 	void login();
 	ResponseVO update(LoginVo loginVo);
 	void delete();
-<<<<<<< HEAD
-	
-=======
->>>>>>> c022c299afd99f9f3d7af9f44830b75627b52a00
 	ResponseVO create(Employee employee);
 }
 

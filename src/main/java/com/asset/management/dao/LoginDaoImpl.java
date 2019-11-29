@@ -19,7 +19,6 @@ public class LoginDaoImpl implements LoginDao {
 	@Autowired
 	private LoginMapper loginMap;
 	
-	@Override
 	public ResponseVO create(Employee employee) {
 		Login loginEntity=new Login();
 		ResponseVO response=new ResponseVO();
@@ -61,7 +60,6 @@ public class LoginDaoImpl implements LoginDao {
 		return response;
 	}
 
-	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		
