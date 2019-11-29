@@ -32,5 +32,5 @@ public class LoginController {
 		obj.setToken(loginService.generatePasswordToken((long) 1000));
 		   loginService.sendmail(obj);  
 	     
-	    }
+	    }///
 }
