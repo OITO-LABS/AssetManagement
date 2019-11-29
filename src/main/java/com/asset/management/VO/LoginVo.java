@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 import com.asset.management.dao.entity.Employee;
-
+import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
 
 import lombok.Getter;
