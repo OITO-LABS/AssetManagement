@@ -6,5 +6,6 @@ public interface LoginService {
 	void resetPassword();
 	void validatePassword();
 	void sendmail(Mail obj);
-	String generatePasswordToken(String value);
+	String generatePasswordToken(String empId);
+
 }
