@@ -1,5 +1,5 @@
 package com.asset.management.service;
 
-public class LoginService {
-
+public interface LoginService {
+	void resetPassword();
 }

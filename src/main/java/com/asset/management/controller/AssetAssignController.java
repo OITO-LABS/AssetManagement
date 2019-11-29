@@ -2,7 +2,6 @@ package com.asset.management.controller;
 
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +21,7 @@ import com.asset.management.service.AssetAssign;
 public class AssetAssignController {
 	@Autowired
 	private AssetAssign assetAssign;
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetAssignController.class);
 
-	// get asset by considering employee id
 	@GetMapping("/{id}")
 	List<AssetAssignVO> getAll(@PathVariable Long id) {
 		try {
@@ -59,7 +56,6 @@ public class AssetAssignController {
 	ResponseVO returnAsset(@PathVariable Long assetId, @PathVariable String status,
 			@RequestBody AssetAssignVO assetAssignVO) {
 		try {
-			logger.info("{}", assetAssignVO);
 			return assetAssign.assetReturn(assetId, assetAssignVO);
 		} catch (final Exception ex) {
 			final ResponseVO response = new ResponseVO();
