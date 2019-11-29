@@ -12,13 +12,11 @@ public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public void generatePasswordToken() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void validatePassword() {
-		// TODO Auto-generated method stub
 		
 	}
 
