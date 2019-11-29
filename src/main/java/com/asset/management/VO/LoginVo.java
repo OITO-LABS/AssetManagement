@@ -3,6 +3,7 @@ package com.asset.management.VO;
 import java.util.Date;
 
 import com.asset.management.dao.entity.Employee;
+import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
 
 import lombok.Getter;
@@ -18,6 +19,6 @@ public class LoginVo {
 	private Status status;
 	private Date loginTime;
 	private Date logoutTime;
-	private String role;
+	private Role role;
 	private Employee employee;
 }
