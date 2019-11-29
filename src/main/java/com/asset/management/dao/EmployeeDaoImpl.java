@@ -35,9 +35,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Autowired
 	private AssetMapperInterface map;
-	
+//	
 //	@Autowired
-//	private LoginDao loginDao;
+//	private LoginDao loginDao;   
 
 	@Override
 	public List<EmployeeVo> selectAll() {
