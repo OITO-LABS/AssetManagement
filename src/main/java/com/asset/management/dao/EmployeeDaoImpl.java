@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
 import com.asset.management.VO.LoginVo;
+import com.asset.management.VO.Mail;
 import com.asset.management.VO.PaginationVO;
 import com.asset.management.VO.mapping.AssetMapperInterface;
 import com.asset.management.VO.mapping.EmployeeMapping;
@@ -21,6 +22,7 @@ import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Status;
 import com.asset.management.dao.repository.AssetRepository;
 import com.asset.management.dao.repository.EmployeeRepository;
+import com.asset.management.service.LoginService;
 
 @Component
 public class EmployeeDaoImpl implements EmployeeDao {
@@ -38,7 +40,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	
 	@Autowired
 	private LoginDao loginDao;   
-
+	@Autowired
+	private LoginService loginService;
 	@Override
 	public List<EmployeeVo> selectAll() {
 		final List<Employee> employee = employeeRepository.findAll();
@@ -58,10 +61,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				if (empNo == null) {
 					if (healthCardNo == null) {
 						emp.setStatus(Status.Active);
-						loginVO.setUserName(emp.getEmail());
-						loginVO.setEmployee(emp);
-						loginDao.create(loginVO);
 						employeeRepository.save(emp);
+						
 					} else {
 						throw new Exception("Health Card no already exists!");
 					}
@@ -74,6 +75,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		} else {
 			throw new Exception("Email already exists!");
 		}
+		loginDao.create(emp);
+		String id=(emp.getEmpId()).toString();
+		Mail obj=new Mail();
+		obj.setTo(emp.getEmail());
+		obj.setToken(loginService.generatePasswordToken(id));
+		loginService.sendmail(obj);
 	}
 
 	@Override

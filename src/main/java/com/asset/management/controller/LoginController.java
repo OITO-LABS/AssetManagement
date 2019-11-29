@@ -17,7 +17,6 @@ import com.asset.management.service.LoginService;
 @RequestMapping("login")
 public class LoginController {
 	@Autowired
-
 	private LoginService loginService;
 
 	@PostMapping
