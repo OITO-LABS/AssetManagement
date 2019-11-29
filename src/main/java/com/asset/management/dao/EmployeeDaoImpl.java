@@ -36,8 +36,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Autowired
 	private AssetMapperInterface map;
 	
-	@Autowired
-	private LoginDao loginDao;
+//	@Autowired
+//	private LoginDao loginDao;
 
 	@Override
 	public List<EmployeeVo> selectAll() {
@@ -60,7 +60,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 						emp.setStatus(Status.Active);
 						loginVO.setUserName(emp.getEmail());
 						loginVO.setEmployee(emp);
-						loginDao.create(loginVO);
+					//	loginDao.create(loginVO);
 						employeeRepository.save(emp);
 					} else {
 						throw new Exception("Health Card no already exists!");
