@@ -1,7 +1,11 @@
 package com.asset.management.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
+import com.asset.management.dao.EmployeeDao;
+import com.asset.management.dao.LoginDao;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -13,6 +17,11 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
     private MailService emailService;
 	
+	@Autowired
+	private LoginDao logDao;
+	
+	@Autowired
+	private EmployeeDao emp;
 	//private static final org.slf4j.Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 	
 	@Override
@@ -26,8 +35,11 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 
-	public void resetPassword() {
-
+	public void resetPassword(LoginVo logVO) {
+		String value=logVO.getPassword();
+		String token=logVO.getToken();
+		logVO.setPassword(generatePasswordToken(value));
+		logDao.update(logVO);
 	}
 
 	@Override
@@ -54,5 +66,14 @@ public class LoginServiceImpl implements LoginService {
 	public void validatePassword() {
 
 	}
+
+
+	@Override
+	public Long decryption(String token) {
+		Long empId=(long) 11;
+		return empId;
+	}
+
+
 
 }
