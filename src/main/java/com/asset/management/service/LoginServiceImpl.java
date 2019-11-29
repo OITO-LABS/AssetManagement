@@ -35,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
             return hashtext;
 		}
 
-		catch (NoSuchAlgorithmException e) {
+		catch (NoSuchAlgorithmException e) {  //
 			throw new RuntimeException(e);
 		}
 	}
