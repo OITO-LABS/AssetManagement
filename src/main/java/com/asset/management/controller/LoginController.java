@@ -25,7 +25,7 @@ public class LoginController {
 	   public void resetPassword() {
 		   
 	   }
-
+///
 	@PostMapping("/send-mail")
 	 public void mail(@RequestBody Mail obj) {
 		   loginService.sendmail(obj);  

@@ -13,7 +13,7 @@ public class Mail {
     private String token;
     public Mail() {
     }
-
+///
     public Mail(String from, String to, String subject, String content) {
         this.from = from;
         this.to = to;

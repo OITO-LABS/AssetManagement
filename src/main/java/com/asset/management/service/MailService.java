@@ -11,7 +11,7 @@ import com.asset.management.VO.Mail;
 public class MailService {
 	@Autowired
     private JavaMailSender emailSender;
-
+///
     public void sendSimpleMessage(final Mail mail){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setSubject(mail.getSubject());

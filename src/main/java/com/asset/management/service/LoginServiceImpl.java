@@ -14,7 +14,7 @@ public class LoginServiceImpl implements LoginService{
 		
 	}
 	
-
+///
 	@Override
 	public void sendmail(Mail obj) {
 		 Mail mail = new Mail();
