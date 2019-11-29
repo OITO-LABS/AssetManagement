@@ -1,5 +1,7 @@
 package com.asset.management.service;
 
+import org.apache.log4j.spi.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
     private MailService emailService;
 	
+	@Autowired
+
 	@Override
 	public void sendmail(Mail obj) {
 		 Mail mail = new Mail();
@@ -25,10 +29,11 @@ public class LoginServiceImpl implements LoginService {
 	        emailService.sendSimpleMessage(mail);		
 	}
 
-	@Override
+
 	public void resetPassword() {
 
 	}
+	
 	
 	@Override
 	public void validatePassword() {
@@ -36,12 +41,13 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String generatePasswordToken(Long empId) {
+	public String generatePasswordToken(String value) {
+
 
 		try {
 
 			MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] messageDigest = md.digest((empId.toString()).getBytes());
+            byte[] messageDigest = md.digest((value.toString()).getBytes());
             BigInteger no = new BigInteger(1, messageDigest);
             String hashtext = no.toString(16);
             while (hashtext.length() < 32) {
