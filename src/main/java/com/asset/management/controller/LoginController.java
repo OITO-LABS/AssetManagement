@@ -21,8 +21,13 @@ public class LoginController {
 	   public void login() {
 		   logger.info("Hi");
 	   }
+	   
+	   @PostMapping("/reset")
+	   public void resetPassword() {
+		   
+	   }
 	   @GetMapping("/send-mail")
-	 public void mail() throws Exception {
+	   public void mail() throws Exception {
 		 logger.info("Spring Mail - Sending Simple Email ");
 
 	        Mail mail = new Mail();
