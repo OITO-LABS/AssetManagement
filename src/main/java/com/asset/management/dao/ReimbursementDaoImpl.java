@@ -149,4 +149,39 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		return pageData;
 	}
 
+	@Override
+	public ListPageData searchEmployeeId(PageViewVo page) {
+	
+		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
+				Sort.by("reimbursement_date").descending());
+		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNo(page.getEmpNo(),pageable);
+		final List<Object[]> dataList = data.getContent();
+		final ListPageData pageData = new ListPageData();
+		pageData.setReimbursementDetails(listConverter.reConvertion(dataList));
+		pageData.setPageable(data.getPageable());
+		pageData.setNumber(data.getNumber());
+		pageData.setNumberOfElements(data.getNumberOfElements());
+		pageData.setSize(data.getSize());
+		pageData.setTotalElements(data.getTotalElements());
+		pageData.setTotalPages(data.getTotalPages());
+		return pageData;
+	}
+
+	@Override
+	public ListPageData searchEmployeeDate(PageViewVo page) {
+		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
+				Sort.by("reimbursement_date").descending());
+		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNoDate(page.getDateFrom(),page.getDateTo(), page.getEmpNo(), pageable);
+		final List<Object[]> dataList = data.getContent();
+		final ListPageData pageData = new ListPageData();
+		pageData.setReimbursementDetails(listConverter.reConvertion(dataList));
+		pageData.setPageable(data.getPageable());
+		pageData.setNumber(data.getNumber());
+		pageData.setNumberOfElements(data.getNumberOfElements());
+		pageData.setSize(data.getSize());
+		pageData.setTotalElements(data.getTotalElements());
+		pageData.setTotalPages(data.getTotalPages());
+		return pageData;
+	}
+
 }

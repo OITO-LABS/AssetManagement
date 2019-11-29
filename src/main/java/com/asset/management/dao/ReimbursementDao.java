@@ -25,5 +25,9 @@ public interface ReimbursementDao {
 	ListPageData reimbursementGetEmpDetails(@RequestBody PageViewVo page);
 
 	ListPageData viewData(PageViewVo page);
+	
+	ListPageData searchEmployeeId(@RequestBody PageViewVo page);
+	
+	ListPageData searchEmployeeDate(@RequestBody PageViewVo page);
 
 }
