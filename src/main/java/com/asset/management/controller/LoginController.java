@@ -17,7 +17,7 @@ import com.asset.management.service.LoginService;
 @RequestMapping("login")
 public class LoginController {
 	@Autowired
-<<<<<<< HEAD
+
 	private LoginService loginService;
 
 	@PostMapping
@@ -43,26 +43,4 @@ public class LoginController {
 			status.setMessage(ex.getMessage());
 		}
 		return status;
-	}
-=======
-	    private LoginService loginService;
-	   
-	   @PostMapping
-	   public void login() {
-	   }
-	   
-	   @PostMapping("/reset")
-	   public ResponseVO resetPassword(@RequestBody LoginVo logVo) {
-		   return null;
-	   }
-	@PostMapping("/send-mail")
-	 public void mail(@RequestBody Mail obj) {
-
-		Long empId=(long) 1000;
-		String str=empId.toString();
-		obj.setToken(loginService.generatePasswordToken(str));
-		loginService.sendmail(obj);   
-	     
-	    }
->>>>>>> bc7f4fe861594ea970fd5a029bf16b4c09cc11df
-}
+	}}
