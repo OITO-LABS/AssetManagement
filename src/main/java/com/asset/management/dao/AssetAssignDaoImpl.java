@@ -37,17 +37,12 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	AssetAssignRepository assetAssign;
 
 	// Assign asset to an employee.
-	@Override
 	public ResponseVO assetAssigned(Long assetId, AssetAssignVO assetAssignVO) {
 		final ResponseVO response = new ResponseVO();
 		final AssetEntity asset = assetRepository.findByAssetId(assetId);
 		final AssetAssignEntity assetAssignEntity = map.assetAssignConvertion(assetAssignVO);
 		final Employee emp = assetAssignEntity.getEmployee();
 		final Employee employee = employeeRepository.findByEmpNo(emp.getEmpNo());
-<<<<<<< HEAD
-		
-=======
->>>>>>> 8c0dffa4684cb42b01bf012ff424881869d23a75
 		if (asset != null && asset.getEnableStatus().equals(Status.Unassigned)) {
 			final Calendar cal = Calendar.getInstance();
 			asset.setEnableStatus(Status.Assigned);
@@ -61,11 +56,7 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 			assetAssignEntity.setUpdatedDate(cal.getTime());
 			if (assetAssign.saveAndFlush(assetAssignEntity).getId() != null) {
 				response.setStatus("success");
-<<<<<<< HEAD
-				return response;///
-=======
 				return response;
->>>>>>> 8c0dffa4684cb42b01bf012ff424881869d23a75
 			}
 		}
 		response.setStatus("failed");
@@ -73,7 +64,6 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	}
 
 	// Return a device
-	@Override
 	public ResponseVO returnDevice(Long assetId, AssetAssignVO assetAssignVO) {
 		final ResponseVO response = new ResponseVO();
 		final AssetEntity asset = assetRepository.findByAssetId(assetId);
@@ -98,13 +88,11 @@ public class AssetAssignDaoImpl implements AssetAssignDao {
 	}
 
 	// Fetch all the asset details.
-	@Override
 	public List<AssetAssignVO> getAll(Long empId) {
 		final List<AssetAssignEntity> assetAssignEntity = assetAssign.findByEmployee(empId);
 		return map.assetAssignReConvertion1(assetAssignEntity);
 	}
 
-	@Override
 	public ListPageData searchEmployeeDate(PageViewVo page) {
 		
 		return null;
