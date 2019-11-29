@@ -58,15 +58,4 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 
 	}
 
-	@Override
-	public ListPageData searchEmployee(PageViewVo page) {
-		
-		return reimbursementDao.searchEmployeeId(page);
-	}
-
-	@Override
-	public ListPageData searchEmployeeDate(PageViewVo page) {
-		return reimbursementDao.searchEmployeeDate(page);
-	}
-//
 }

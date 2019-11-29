@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
-import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.PaginationVO;
 import com.asset.management.VO.mapping.AssetMapperInterface;
 import com.asset.management.VO.mapping.EmployeeMapping;
@@ -35,9 +34,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Autowired
 	private AssetMapperInterface map;
-	
-	@Autowired
-	private LoginDao loginDao;   
 
 	@Override
 	public List<EmployeeVo> selectAll() {
@@ -47,7 +43,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public void register(EmployeeVo employee) throws Exception {// POST
-		LoginVo loginVO=new LoginVo();
 		final Employee email = employeeRepository.findByEmail(employee.getEmail());
 		final Employee contact = employeeRepository.findByContactNo(employee.getContactNo());
 		final Employee empNo = employeeRepository.findByEmpNo(employee.getEmpNo());
@@ -58,9 +53,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				if (empNo == null) {
 					if (healthCardNo == null) {
 						emp.setStatus(Status.Active);
-						loginVO.setUserName(emp.getEmail());
-						loginVO.setEmployee(emp);
-						loginDao.create(loginVO);
 						employeeRepository.save(emp);
 					} else {
 						throw new Exception("Health Card no already exists!");

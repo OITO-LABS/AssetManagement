@@ -38,7 +38,7 @@ public class ReimbursementValidator implements Validator {
 				response.setMessage("BillNo already Exists");
 				status = 1;
 			} else {
-				response.setStatus("success");
+				response.setStatus("Success");
 			}
 		}
 		if (status == 0) {
@@ -48,7 +48,7 @@ public class ReimbursementValidator implements Validator {
 			}
 			if (calcCost == data.getTotalCost()) {
 				logger.info("Cost Match");
-				response.setStatus("success");
+				response.setStatus("Success");
 
 			} else {
 				response.setErrorcode(HttpStatus.BAD_REQUEST);

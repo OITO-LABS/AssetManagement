@@ -23,10 +23,9 @@ public class AssetValidator implements Validation {
 		final AssetEntity dummy = assetRepository.findByAssetKey(asset.getAssetKey());
 		if (dummy != null) {
 			response.setErrorcode(HttpStatus.BAD_REQUEST);
-			response.setMessage("Asset Key already exist");
 			response.setStatus("Failed");
 		} else {
-			response.setStatus("success");
+			response.setStatus("Success");
 
 		}
 
@@ -38,7 +37,6 @@ public class AssetValidator implements Validation {
 		final ResponseVO response = new ResponseVO();
 		final AssetEntity asset = assetRepository.findByAssetId(assetId);
 		if (asset != null) {
-			response.setMessage("Asset Key already exist");
 			response.setErrorcode(HttpStatus.METHOD_NOT_ALLOWED);
 			response.setStatus("failed");
 			return response;
@@ -71,7 +69,7 @@ public class AssetValidator implements Validation {
 		} else {
 			response.setErrorcode(HttpStatus.FORBIDDEN);
 			response.setStatus("failed");
-			response.setMessage("You are missed any of the values for Product Category & Model");
+			response.setMessage("Updation failed");
 		}
 		return response;
 	}

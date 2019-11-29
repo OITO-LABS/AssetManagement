@@ -77,29 +77,26 @@ public class AssetListConverter<T> {
 		for (final Object[] result : resultSet) {
 			final AssetDetailsVO asset = new AssetDetailsVO();
 			asset.setAssetId((BigInteger) result[0]);
-			asset.setEmpId((BigInteger) result[1]);
-			asset.setEmpNo((String) result[2]);
-			asset.setFname((String) result[3]);
-			asset.setLname((String) result[4]);
-			if (result[5].equals(null)) {
+			asset.setEmpNo((String) result[1]);
+			asset.setFname((String) result[2]);
+			asset.setLname((String) result[3]);
+			if (result[4].equals(null)) {
 				asset.setIssueDate(null);
 			} else {
-				asset.setIssueDate((formatter.format((Date) result[5])));
+				asset.setIssueDate((formatter.format((Date) result[4])));
 			}
 
-			asset.setReturnDate((Date) result[6]);
-			asset.setCause((String) result[7]);
+			asset.setReturnDate((Date) result[5]);
+			asset.setCause((String) result[6]);
 			assetDetails.add(asset);
 		}
 		return assetDetails;
 	}
 
-	@SuppressWarnings("unchecked")
-	public static List<ResultSetVO> pageConvertion(@SuppressWarnings("rawtypes") List list) {
+	public static List<ResultSetVO> pageConvertion(List list) {
 		final List<ResultSetVO> resultSetVO = new ArrayList<>();
 		list.forEach((temp) -> {
 			System.out.println(temp);
-			@SuppressWarnings("unused")
 			final ResultSetVO assetVO = new ResultSetVO(temp);
 
 		});
