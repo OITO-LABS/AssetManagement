@@ -10,8 +10,7 @@ public class Mail {
     private String to;
     private String subject;
     private String content;
-    private String username;
-    private String password;
+    private String token;
     public Mail() {
     }
 
