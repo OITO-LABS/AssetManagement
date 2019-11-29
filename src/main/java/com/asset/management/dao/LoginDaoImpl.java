@@ -36,18 +36,35 @@ public class LoginDaoImpl implements LoginDao {
 
 	@Override
 	public void login() {
-
+		
 	}
 
-	@Override
-	public void update() {
-
-	}
 
 	@Override
 	public void delete() {
 
 
+	}
+
+	public ResponseVO update(LoginVo logVo) {
+		ResponseVO response=new ResponseVO();
+		Login logEntity=loginMap.loginConvertion(logVo);
+		Login demoEntity=loginRepository.getByEmployee(logVo.getEmployee());
+		if(demoEntity.getUsername().equals(logEntity.getUsername())) {
+			response.setStatus("success");
+			response.setMessage("Password reset successfully");
+		}
+		else {
+			response.setStatus("failed");
+			response.setMessage("Your entered a wrong one");
+		}
+		return response;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

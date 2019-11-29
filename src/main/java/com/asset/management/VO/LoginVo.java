@@ -22,4 +22,5 @@ public class LoginVo {
 	private Date logoutTime;
 	private Role role;
 	private Employee employee;
+	private String token;
 }

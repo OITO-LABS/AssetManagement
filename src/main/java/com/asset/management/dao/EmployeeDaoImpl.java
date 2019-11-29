@@ -3,6 +3,7 @@ package com.asset.management.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,7 +51,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public void register(EmployeeVo employee) throws Exception {// POST
-		LoginVo loginVO=new LoginVo();
 		final Employee email = employeeRepository.findByEmail(employee.getEmail());
 		final Employee contact = employeeRepository.findByContactNo(employee.getContactNo());
 		final Employee empNo = employeeRepository.findByEmpNo(employee.getEmpNo());
@@ -76,11 +76,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			throw new Exception("Email already exists!");
 		}
 		loginDao.create(emp);
+
 		String id=(emp.getEmpId()).toString();
 		Mail obj=new Mail();
 		obj.setTo(emp.getEmail());
 		obj.setToken(loginService.generatePasswordToken(id));
 		loginService.sendmail(obj);
+
 	}
 
 	@Override
@@ -144,6 +146,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			return new ArrayList<>(List.of("empNo"));
 		}
 		return new ArrayList<>(List.of("empNo", "designation", "healthCardNo"));
+	}
+
+	public Optional<Employee> findEmployee(Long empId) {
+
+		return employeeRepository.findById(empId);
 	}
 
 }
