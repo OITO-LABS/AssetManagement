@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
+import com.asset.management.VO.ResponseVO;
 import com.asset.management.service.LoginService;
 
 @RestController
@@ -22,12 +24,14 @@ public class LoginController {
 	   }
 	   
 	   @PostMapping("/reset")
-	   public void resetPassword() {
-		   
+	   public ResponseVO resetPassword(@RequestBody LoginVo logVo) {
+		   return null;
 	   }
 	@PostMapping("/send-mail")
 	 public void mail(@RequestBody Mail obj) {
-		obj.setToken(loginService.generatePasswordToken((String) 1000));
+		Long empID=(long) 1000;
+		String str=empID.toString();
+		obj.setToken(loginService.generatePasswordToken(str));
 		   loginService.sendmail(obj);  
 	     
 	    }

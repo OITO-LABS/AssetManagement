@@ -4,11 +4,7 @@ import java.util.Date;
 
 
 import com.asset.management.dao.entity.Employee;
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 771ea8a596faa7e0fc6e622ea35015014959407a
+import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
 
 import lombok.Getter;
@@ -24,5 +20,6 @@ public class LoginVo {
 	private Status status;
 	private Date loginTime;
 	private Date logoutTime;
+	private Role role;
 	private Employee employee;
 }
