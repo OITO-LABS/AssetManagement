@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asset.management.VO.AssetVO;
+import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
 import com.asset.management.service.LoginService;
 
@@ -26,8 +27,8 @@ public class LoginController {
 	}
 
 	@PostMapping("/reset")
-	public void resetPassword() {
-
+	public void resetPassword(@RequestBody LoginVo loginVo) {
+		loginService.resetPassword(loginVo);
 	}
 
 	@PostMapping("/send-mail")

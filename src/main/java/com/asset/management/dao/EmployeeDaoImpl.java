@@ -47,7 +47,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public void register(EmployeeVo employee) throws Exception {// POST
-		LoginVo loginVO=new LoginVo();
 		final Employee email = employeeRepository.findByEmail(employee.getEmail());
 		final Employee contact = employeeRepository.findByContactNo(employee.getContactNo());
 		final Employee empNo = employeeRepository.findByEmpNo(employee.getEmpNo());
@@ -58,9 +57,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				if (empNo == null) {
 					if (healthCardNo == null) {
 						emp.setStatus(Status.Active);
-						loginVO.setUserName(emp.getEmail());
-						loginVO.setEmployee(emp);
-						loginDao.create(loginVO);
 						employeeRepository.save(emp);
 					} else {
 						throw new Exception("Health Card no already exists!");
@@ -69,11 +65,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					throw new Exception("Employee no already exists!");
 				}
 			} else {
-				throw new Exception("Contact no already exists!");
-			}
-		} else {
+				throw new Exception("Contact no already exists!");}}
+			else {
 			throw new Exception("Email already exists!");
 		}
+		loginDao.create(emp);
 	}
 
 	@Override

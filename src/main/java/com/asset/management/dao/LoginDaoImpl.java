@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.VO.mapping.LoginMapper;
+import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Login;
 import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
@@ -19,9 +20,11 @@ public class LoginDaoImpl implements LoginDao {
 	private LoginMapper loginMap;
 	
 	@Override
-	public ResponseVO create(LoginVo loginVo) {
-		Login loginEntity=loginMap.loginConvertion(loginVo);
+	public ResponseVO create(Employee employee) {
+		Login loginEntity=new Login();
 		ResponseVO response=new ResponseVO();
+		loginEntity.setUsername(employee.getEmail());
+		loginEntity.setEmployee(employee);
 		loginEntity.setStatus(Status.Inactive);
 		loginEntity.setRole(Role.employee);
 		if(loginRepository.saveAndFlush(loginEntity).getLoginId()!=null) {
@@ -37,8 +40,14 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public void update() {
-
+	public void update(LoginVo loginVo) {
+		ResponseVO response=new ResponseVO();
+		Login logEntity=loginMap.loginConvertion(loginVo);
+		Login log=loginRepository.findByUsername(logEntity.getPassword());
+		if(log!= null) {
+			response.setMessage("succes");
+			response.setStatus("success");
+		}
 	}
 
 	@Override

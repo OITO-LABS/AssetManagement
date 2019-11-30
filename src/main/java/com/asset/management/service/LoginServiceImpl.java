@@ -3,7 +3,11 @@ package com.asset.management.service;
 import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
+import com.asset.management.dao.LoginDao;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,6 +24,9 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private MailService emailService;
+	
+	@Autowired
+	private LoginDao logDao;
 
 	private static SecretKeySpec secretKey;
 	private static byte[] key;
@@ -67,8 +74,10 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void resetPassword() {
-
+	public void resetPassword(LoginVo loginVo) {
+		String enPassword=loginVo.getPassword();
+		loginVo.setPassword(encryptPassword(enPassword));
+		logDao.update(loginVo);
 	}
 
 	@Override
