@@ -136,7 +136,13 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public LoginVo login(LoginVo logVo) {
-		return logDao.login(logVo);
+		try {
+			return logDao.login(logVo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return logVo;
 	}
 
 }
