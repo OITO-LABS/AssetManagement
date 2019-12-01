@@ -23,7 +23,8 @@ public class LoginController {
 	private LoginService loginService;
 
 	@PostMapping
-	public void login() {
+	public LoginVo login(LoginVo logVo) {
+		return loginService.login(logVo);
 	}
 
 	@PostMapping("reset")

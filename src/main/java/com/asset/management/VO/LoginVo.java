@@ -18,6 +18,7 @@ public class LoginVo {
 	private String username;
 	private String password;
 	private Status status;
+	private String token;
 	private Date loginTime;
 	private Date logoutTime;
 	private Employee employee;

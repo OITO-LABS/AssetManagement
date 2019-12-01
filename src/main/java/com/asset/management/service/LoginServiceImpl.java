@@ -134,4 +134,9 @@ public class LoginServiceImpl implements LoginService {
 
 	}
 
+	@Override
+	public LoginVo login(LoginVo logVo) {
+		return logDao.login(logVo);
+	}
+
 }

@@ -16,6 +16,7 @@ import com.asset.management.dao.repository.LoginRepository;
 public class LoginDaoImpl implements LoginDao {
 	@Autowired
 	private LoginRepository loginRepository;
+	
 	@Autowired
 	private LoginMapper loginMap;
 	
@@ -35,8 +36,15 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public void login() {
-
+	public LoginVo login(LoginVo logVo) throws Exception{
+		Login log=loginRepository.findByUsername(logVo.getUsername());
+		if(log!=null && log.getPassword().equals(logVo.getPassword())) {
+			return loginMap.loginReConvertion(log);
+		}
+		else {
+			throw new Exception("Invalid username or password");
+		}
+		
 	}
 
 	@Override

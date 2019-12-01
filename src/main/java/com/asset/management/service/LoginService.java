@@ -17,4 +17,6 @@ public interface LoginService {
     String encryptPassword(String password);
     
     String decryptPassword(String password);
+
+    LoginVo login(LoginVo logVo);
 }

@@ -10,12 +10,13 @@ import org.mapstruct.factory.Mappers;
 import com.asset.management.VO.LoginVo;
 import com.asset.management.dao.entity.Login;
 
-@Mapper(componentModel = "spring", uses = { EmployeeMapping.class }, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
+@Mapper(componentModel = "spring", uses = { EmployeeMapping.class,
+		AssetMapperInterface.class }, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE, nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
+
 public interface LoginMapper {
 	LoginMapper INSTANCE = Mappers.getMapper(LoginMapper.class);
 	
-	Login loginConvertion(LoginVo loginVO);
-	
+	Login loginConvertion(LoginVo loginVo);
 	@InheritInverseConfiguration
 	LoginVo loginReConvertion(Login login);
 }
