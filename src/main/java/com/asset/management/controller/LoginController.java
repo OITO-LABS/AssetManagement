@@ -17,7 +17,7 @@ import com.asset.management.VO.Mail;
 import com.asset.management.service.LoginService;
 
 @RestController
-@RequestMapping("login")
+@RequestMapping("api/login")
 public class LoginController {
 	@Autowired
 	private LoginService loginService;
@@ -26,7 +26,7 @@ public class LoginController {
 	public void login() {
 	}
 
-	@PostMapping("/reset")
+	@PostMapping("reset")
 	public void resetPassword(@RequestBody LoginVo loginVo) {
 		loginService.resetPassword(loginVo);
 	}

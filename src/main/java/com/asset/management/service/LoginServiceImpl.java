@@ -75,8 +75,9 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public void resetPassword(LoginVo loginVo) {
-		String enPassword=loginVo.getPassword();
-		loginVo.setPassword(encryptPassword(enPassword));
+		LoginVo loginVO=new LoginVo();
+		loginVO.setUsername(loginVo.getUsername());
+		loginVO.setPassword(encryptPassword(loginVo.getPassword()));
 		logDao.update(loginVo);
 	}
 

@@ -4,6 +4,7 @@ import java.util.Date;
 
 
 import com.asset.management.dao.entity.Employee;
+import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
 
 import lombok.Getter;
@@ -14,10 +15,11 @@ import lombok.ToString;
 @Getter
 @ToString
 public class LoginVo {
-	private String userName;
+	private String username;
 	private String password;
 	private Status status;
 	private Date loginTime;
 	private Date logoutTime;
 	private Employee employee;
+	private Role role;
 }

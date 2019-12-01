@@ -43,7 +43,7 @@ public class LoginDaoImpl implements LoginDao {
 	public void update(LoginVo loginVo) {
 		ResponseVO response=new ResponseVO();
 		Login logEntity=loginMap.loginConvertion(loginVo);
-		Login log=loginRepository.findByUsername(logEntity.getPassword());
+		Login log=loginRepository.findByUsername(logEntity.getUsername());
 		if(log!= null) {
 			response.setMessage("succes");
 			response.setStatus("success");
