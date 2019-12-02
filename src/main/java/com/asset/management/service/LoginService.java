@@ -4,10 +4,24 @@ import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
 
 public interface LoginService {
-	void resetPassword(LoginVo logVO);
+
+	void resetPassword(LoginVo loginVo);
+
+
 	void validatePassword();
+
 	void sendmail(Mail obj);
-	String generatePasswordToken(String value);
-	Long decryption(String token);
+
+
 	String generatePasswordToken(Long empId);
+	
+	Long decryptToken(String token);
+	
+    String encryptPassword(String password);
+    
+    String decryptPassword(String password);
+
+
+    LoginVo login(LoginVo logVo);
+
 }

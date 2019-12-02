@@ -16,9 +16,13 @@ import com.asset.management.dao.repository.LoginRepository;
 public class LoginDaoImpl implements LoginDao {
 	@Autowired
 	private LoginRepository loginRepository;
+	
 	@Autowired
 	private LoginMapper loginMap;
 	
+
+
+	@Override
 	public ResponseVO create(Employee employee) {
 		Login loginEntity=new Login();
 		ResponseVO response=new ResponseVO();
@@ -34,9 +38,17 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public void login() {
+	public LoginVo login(LoginVo logVo) throws Exception{
+		Login log=loginRepository.findByUsername(logVo.getUsername());
+		if(log!=null && log.getPassword().equals(logVo.getPassword())) {
+			return loginMap.loginReConvertion(log);
+		}
+		else {
+			throw new Exception("Invalid username or password");
+		}
 		
 	}
+
 
 
 	@Override
@@ -48,7 +60,7 @@ public class LoginDaoImpl implements LoginDao {
 	public ResponseVO update(LoginVo logVo) {
 		ResponseVO response=new ResponseVO();
 		Login logEntity=loginMap.loginConvertion(logVo);
-		Login demoEntity=loginRepository.getByEmployee(logVo.getEmployee());
+		Login demoEntity=loginRepository.findByUsername(logVo.getUsername());
 		if(demoEntity.getUsername().equals(logEntity.getUsername())) {
 			response.setStatus("success");
 			response.setMessage("Password reset successfully");
@@ -60,9 +72,6 @@ public class LoginDaoImpl implements LoginDao {
 		return response;
 	}
 
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }
