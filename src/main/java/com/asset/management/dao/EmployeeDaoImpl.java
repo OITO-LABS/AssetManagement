@@ -123,7 +123,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public Page<Employee> page(PaginationVO pagination) {
 		final Pageable pageable = PageRequest.of(pagination.getPage(), pagination.getLimit());
-		final String status = (String.valueOf(Status.Assigned));
+		final String status = (String.valueOf((Status.Active).name()));
 		return employeeRepository.findE(status, pageable);
 	}
 

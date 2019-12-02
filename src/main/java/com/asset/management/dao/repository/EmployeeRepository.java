@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.asset.management.dao.entity.Employee;
+import com.asset.management.dao.entity.Status;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 

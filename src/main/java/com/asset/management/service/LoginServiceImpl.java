@@ -34,8 +34,9 @@ public class LoginServiceImpl implements LoginService {
 		mail.setTo(obj.getTo());
 		mail.setSubject("OTP Mail");
 		mail.setContent(
-				"Hereby,sending you an auto-generated mail from OITO-TRV Internal Project.To confirm your account, "
-						+ "please click here :http://localhost:8080/oito-trv/reset-password?" + obj.getToken());
+				"Hi,\r\n" + 
+				" Happy to have you on board and welcome to Oitolabs. Hereby,sending you a URL to setup the credentials of your account.\r\n" + 
+				"To confirm your account, please click here : http://localhost:8080/oito-trv/reset-password?" + obj.getToken());
 		emailService.sendSimpleMessage(mail);
 	}
 
