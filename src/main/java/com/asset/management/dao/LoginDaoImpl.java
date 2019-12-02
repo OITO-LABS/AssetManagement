@@ -60,7 +60,7 @@ public class LoginDaoImpl implements LoginDao {
 	public ResponseVO update(LoginVo logVo) {
 		ResponseVO response=new ResponseVO();
 		Login logEntity=loginMap.loginConvertion(logVo);
-		Login demoEntity=loginRepository.getByEmployee(logVo.getEmployee());
+		Login demoEntity=loginRepository.findByUsername(logVo.getUsername());
 		if(demoEntity.getUsername().equals(logEntity.getUsername())) {
 			response.setStatus("success");
 			response.setMessage("Password reset successfully");
