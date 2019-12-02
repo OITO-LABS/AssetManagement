@@ -2,6 +2,7 @@ package com.asset.management.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,25 +14,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.asset.management.VO.AssetVO;
 
+
 import com.asset.management.VO.LoginVo;
+
 
 import com.asset.management.VO.Mail;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.service.LoginService;
 
 @RestController
-@RequestMapping("login")
+@RequestMapping("api/login")
 public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
 	@PostMapping
-	public void login() {
+	public LoginVo login(LoginVo logVo) {
+		return loginService.login(logVo);
 	}
 
-	@PostMapping("/reset")
-	public void resetPassword() {
-
+	@PostMapping("reset")
+	public void resetPassword(@RequestBody LoginVo loginVo) {
+		loginService.resetPassword(loginVo);
 	}
 
 	@PostMapping("/send-mail")

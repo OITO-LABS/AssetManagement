@@ -5,6 +5,8 @@ import com.asset.management.VO.Mail;
 
 public interface LoginService {
 
+	void resetPassword(LoginVo loginVo);
+
 
 	void validatePassword();
 
@@ -18,5 +20,8 @@ public interface LoginService {
     String encryptPassword(String password);
     
     String decryptPassword(String password);
+
+
+    LoginVo login(LoginVo logVo);
 
 }

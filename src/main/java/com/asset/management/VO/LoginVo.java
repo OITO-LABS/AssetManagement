@@ -15,12 +15,13 @@ import lombok.ToString;
 @Getter
 @ToString
 public class LoginVo {
-	private String userName;
+	private String username;
 	private String password;
 	private Status status;
+	private String token;
 	private Date loginTime;
 	private Date logoutTime;
 	private Role role;
 	private Employee employee;
-	private String token;
+
 }

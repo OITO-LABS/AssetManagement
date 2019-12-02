@@ -70,9 +70,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					throw new Exception("Employee no already exists!");
 				}
 			} else {
-				throw new Exception("Contact no already exists!");
-			}
-		} else {
+				throw new Exception("Contact no already exists!");}}
+			else {
 			throw new Exception("Email already exists!");
 		}
 		loginDao.create(emp);
@@ -82,6 +81,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		obj.setTo(emp.getEmail());
 		obj.setToken(loginService.generatePasswordToken(id));
 		loginService.sendmail(obj);
+
 
 	}
 

@@ -42,6 +42,9 @@ public class Login {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
+	@Column(name = "token")
+	private String token;
+	
 	@Column(name = "login_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date loginTime;
@@ -58,7 +61,5 @@ public class Login {
 	@JoinColumn(name = "emp_id")
 	private Employee employee;
 	
-	@Column(name="token")
-	private String token;
 
 }

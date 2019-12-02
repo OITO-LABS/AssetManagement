@@ -8,6 +8,10 @@ import com.asset.management.dao.entity.Login;
 
 public interface LoginRepository extends JpaRepository<Login, Long>{
 
+
 	Login getByEmployee(Employee employee);
+
+	Login findByUsername(String username);
+
 
 }
