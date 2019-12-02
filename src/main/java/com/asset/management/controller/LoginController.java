@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asset.management.VO.AssetVO;
+
+import com.asset.management.VO.LoginVo;
+
 import com.asset.management.VO.Mail;
+import com.asset.management.VO.ResponseVO;
 import com.asset.management.service.LoginService;
 
 @RestController
@@ -31,13 +35,18 @@ public class LoginController {
 	}
 
 	@PostMapping("/send-mail")
-	public void mail(@RequestBody Mail obj) {
+	public ResponseVO mail(@RequestBody Mail obj) {
+		final ResponseVO status = new ResponseVO();
+		try {
+			Long empId = (long) 1000;
+			String str = empId.toString();
+			obj.setToken(loginService.generatePasswordToken(empId));
+			loginService.sendmail(obj);
+			status.setStatus("success");
+		} catch (Exception ex) {
+			status.setStatus("Failed!");
+			status.setMessage(ex.getMessage());
+		}
+		return status;
+	}}
 
-		Long empId = (long) 1000;
-		String str = empId.toString();
-		obj.setToken(loginService.generatePasswordToken((long) 1000));
-		loginService.sendmail(obj);
-
-	}///
-
-}

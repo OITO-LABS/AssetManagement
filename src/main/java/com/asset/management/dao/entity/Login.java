@@ -57,5 +57,8 @@ public class Login {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "emp_id")
 	private Employee employee;
+	
+	@Column(name="token")
+	private String token;
 
 }

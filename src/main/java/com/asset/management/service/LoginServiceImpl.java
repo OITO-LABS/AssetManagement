@@ -66,10 +66,7 @@ public class LoginServiceImpl implements LoginService {
 		return result;
 	}
 
-	@Override
-	public void resetPassword() {
-
-	}
+	
 
 	@Override
 	public void validatePassword() {
