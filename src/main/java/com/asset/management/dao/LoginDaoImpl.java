@@ -75,9 +75,13 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public Employee findEmp(String mail) {
-		return employeeRepository.findByEmail(mail);
-;
+	public Employee findEmp(String mail) throws Exception {
+		Employee emp = employeeRepository.findByEmail(mail);
+		if(emp!=null) {
+		return emp;
+		}else {
+			throw new Exception("Enter your registered e-mail address");
+		}
 	}
 
 

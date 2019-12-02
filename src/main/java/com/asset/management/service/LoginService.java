@@ -26,6 +26,6 @@ public interface LoginService {
     LoginVo login(LoginVo logVo);
 
 
-	Employee findEmp(String mail);
+	Employee findEmp(String mail) throws Exception;
 
 }

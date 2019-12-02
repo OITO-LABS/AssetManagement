@@ -10,7 +10,7 @@ public interface LoginDao {
 	ResponseVO create(Employee employee);
 
 	LoginVo login(LoginVo logVo) throws Exception;
-	Employee findEmp(String mail);
+	Employee findEmp(String mail) throws Exception;
 
 
 	

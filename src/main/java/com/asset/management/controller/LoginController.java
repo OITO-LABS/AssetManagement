@@ -31,20 +31,6 @@ public class LoginController {
 		loginService.resetPassword(loginVo);
 	}
 
-//	@PostMapping("/send-mail")
-//	public ResponseVO mail(@RequestBody Mail obj) {
-//		final ResponseVO status = new ResponseVO();
-//		try {
-//			Long empId = (long) 1000;
-//			obj.setToken(loginService.generatePasswordToken(empId));
-//			loginService.sendmail(obj);
-//			status.setStatus("success");
-//		} catch (Exception ex) {
-//			status.setStatus("Failed!");
-//			status.setMessage(ex.getMessage());
-//		}
-//		return status;
-//	}
 	@PostMapping("/send-mail")
 	public ResponseVO mail(@RequestBody Mail obj) {
 		final ResponseVO status = new ResponseVO();

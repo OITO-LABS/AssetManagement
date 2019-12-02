@@ -138,14 +138,13 @@ public class LoginServiceImpl implements LoginService {
 		try {
 			return logDao.login(logVo);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		return logVo;
 	}
 
 	@Override
-	public Employee findEmp(String mail) {
+	public Employee findEmp(String mail) throws Exception {
 		return logDao.findEmp(mail);
 	}
 
