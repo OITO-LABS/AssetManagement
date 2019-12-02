@@ -24,11 +24,15 @@ import com.asset.management.VO.ResponseVO;
 import com.asset.management.dao.entity.Employee;
 import com.asset.management.service.EmployeeService;
 
+import org.slf4j.LoggerFactory;
+
 @RestController
 @RequestMapping("api/employee")
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
+	
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
 	@GetMapping("listall") // List basic details of all
 	public List<EmployeeVo> selectAll() {
@@ -70,6 +74,8 @@ public class EmployeeController {
 		} catch (final Exception c) {
 			status.setStatus("Failed!");
 			status.setMessage(c.getMessage());
+			logger.info("Exception\n "+c);
+			c.printStackTrace();
 
 		}
 		return status;
