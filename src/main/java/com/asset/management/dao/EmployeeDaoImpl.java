@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
-import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
 import com.asset.management.VO.PaginationVO;
 import com.asset.management.VO.mapping.AssetMapperInterface;
@@ -124,7 +123,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public Page<Employee> page(PaginationVO pagination) {
 		final Pageable pageable = PageRequest.of(pagination.getPage(), pagination.getLimit());
-		final String status = (String.valueOf((Status.Active).ordinal()));
+		final String status = (String.valueOf(Status.Assigned));
 		return employeeRepository.findE(status, pageable);
 	}
 

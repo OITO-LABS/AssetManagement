@@ -10,6 +10,7 @@ import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Login;
 import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
+import com.asset.management.dao.repository.EmployeeRepository;
 import com.asset.management.dao.repository.LoginRepository;
 
 @Component
@@ -20,7 +21,8 @@ public class LoginDaoImpl implements LoginDao {
 	@Autowired
 	private LoginMapper loginMap;
 	
-
+	@Autowired
+	EmployeeRepository employeeRepository;
 
 	@Override
 	public ResponseVO create(Employee employee) {
@@ -70,6 +72,12 @@ public class LoginDaoImpl implements LoginDao {
 			response.setMessage("Your entered a wrong one");
 		}
 		return response;
+	}
+
+	@Override
+	public Employee findEmp(String mail) {
+		return employeeRepository.findByEmail(mail);
+;
 	}
 
 

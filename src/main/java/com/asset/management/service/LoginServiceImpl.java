@@ -1,12 +1,12 @@
 package com.asset.management.service;
 
-import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
 import com.asset.management.dao.LoginDao;
+import com.asset.management.dao.entity.Employee;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -15,9 +15,6 @@ import java.util.Arrays;
 import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @Component
 public class LoginServiceImpl implements LoginService {
@@ -38,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
 		mail.setSubject("OTP Mail");
 		mail.setContent(
 				"Hereby,sending you an auto-generated mail from OITO-TRV Internal Project.To confirm your account, "
-						+ "please click here :https://www.google.com?" + obj.getToken());
+						+ "please click here :http://localhost:8080/oito-trv/reset-password?" + obj.getToken());
 		emailService.sendSimpleMessage(mail);
 	}
 
@@ -66,7 +63,6 @@ public class LoginServiceImpl implements LoginService {
 			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 			result = Base64.getEncoder().encodeToString(cipher.doFinal(((empId).toString()).getBytes("UTF-8")));
-			System.out.println(result);
 		} catch (Exception ex) {
 
 		}
@@ -146,6 +142,11 @@ public class LoginServiceImpl implements LoginService {
 			e.printStackTrace();
 		}
 		return logVo;
+	}
+
+	@Override
+	public Employee findEmp(String mail) {
+		return logDao.findEmp(mail);
 	}
 
 }

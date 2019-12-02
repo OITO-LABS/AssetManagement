@@ -2,6 +2,7 @@ package com.asset.management.service;
 
 import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
+import com.asset.management.dao.entity.Employee;
 
 public interface LoginService {
 
@@ -23,5 +24,8 @@ public interface LoginService {
 
 
     LoginVo login(LoginVo logVo);
+
+
+	Employee findEmp(String mail);
 
 }
