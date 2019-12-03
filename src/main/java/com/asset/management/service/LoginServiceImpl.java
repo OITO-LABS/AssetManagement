@@ -28,13 +28,15 @@ public class LoginServiceImpl implements LoginService {
 
 	private static SecretKeySpec secretKey;
 	private static byte[] key;
-
+	//sendmail
 	@Override
 	public void sendmail(Mail obj) {
 		Mail mail = new Mail();
 		mail.setTo(obj.getTo());
 		mail.setSubject("OTP Mail");
-		mail.setContent("Hereby,sending you an auto-generated mail from OITO-TRV Internal Project.To confirm your account please click here :http://localhost:8080/oito-trv/reset-password"? +obj.getToken());
+		mail.setContent(
+				"Hereby,sending you an auto-generated mail from OITO-TRV Internal Project.To confirm your account, "
+						+ "please click here :https://www.google.com"? + obj.getToken());
 		emailService.sendSimpleMessage(mail);
 	}
 

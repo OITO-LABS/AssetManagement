@@ -9,7 +9,7 @@ public interface LoginService {
 
 	ResponseVO resetPassword(LoginVo loginVo);
 
-
+	//validate password
 	void validatePassword();
 
 	void sendmail(Mail obj);

@@ -21,6 +21,8 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
+	// login
+
 	@PostMapping
 	public LoginVo login(@RequestBody LoginVo logVo) {
 		return loginService.login(logVo);
