@@ -32,7 +32,6 @@ public class LoginController {
 	public void resetPassword(@RequestBody LoginVo loginVo) {
 		loginService.resetPassword(loginVo);
 	}
-
 	@PostMapping("/send-mail")
 	public ResponseVO mail(@RequestBody Mail obj) {
 		final ResponseVO status = new ResponseVO();
