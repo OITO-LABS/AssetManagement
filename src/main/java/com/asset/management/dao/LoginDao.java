@@ -5,7 +5,7 @@ import com.asset.management.VO.ResponseVO;
 import com.asset.management.dao.entity.Employee;
 public interface LoginDao {
 
-	ResponseVO update(LoginVo loginVo);
+	ResponseVO update(LoginVo loginVo) throws Exception;
 	void delete();
 	ResponseVO create(Employee employee);
 

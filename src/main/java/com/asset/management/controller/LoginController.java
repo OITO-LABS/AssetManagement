@@ -1,14 +1,19 @@
 package com.asset.management.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.asset.management.VO.LoginVo;
+import com.asset.management.VO.AssetVO;
 
+import com.asset.management.VO.LoginVo;
 
 import com.asset.management.VO.Mail;
 import com.asset.management.VO.ResponseVO;
@@ -22,13 +27,17 @@ public class LoginController {
 	private LoginService loginService;
 
 	@PostMapping
-	public LoginVo login(LoginVo logVo) {
+	public LoginVo login(@RequestBody LoginVo logVo) {
 		return loginService.login(logVo);
 	}
 
 	@PostMapping("reset")
 	public void resetPassword(@RequestBody LoginVo loginVo) {
-		loginService.resetPassword(loginVo);
+		try {
+			loginService.resetPassword(loginVo);
+		} catch (Exception e) {
+
+		}
 	}
 
 	@PostMapping("/send-mail")
@@ -46,5 +55,17 @@ public class LoginController {
 		}
 		return status;
 	}
-}
 
+	@GetMapping("token/{value}")
+	public String getTestId(@PathVariable Long value) {
+		try {
+
+			return loginService.generatePasswordToken(value);
+
+		} catch (Exception e) {
+
+		}
+		return null;
+	}
+
+}

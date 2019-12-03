@@ -29,6 +29,8 @@ import com.asset.management.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
+	
+	final ResponseVO status = new ResponseVO();
 
 	@GetMapping("listall") // List basic details of all
 	public List<EmployeeVo> selectAll() {
@@ -58,7 +60,6 @@ public class EmployeeController {
 
 	@PostMapping
 	public ResponseVO register(@Valid @RequestBody EmployeeVo obj, Errors error) throws Exception {
-		final ResponseVO status = new ResponseVO();
 		try {
 			if (error.hasErrors()) {
 				status.setStatus("Enter mandatory details in valid format");
@@ -78,7 +79,6 @@ public class EmployeeController {
 	@DeleteMapping("/{id}")
 	public ResponseVO deleteUser(@PathVariable Long id) {// DELETE
 		employeeService.delete(id);
-		final ResponseVO status = new ResponseVO();
 		status.setStatus("success");
 		return status;
 	}
@@ -90,7 +90,6 @@ public class EmployeeController {
 
 	@PutMapping("/{id}") // update all fields
 	public ResponseVO update(@PathVariable Long id, @Valid @RequestBody EmployeeVo obj, Errors error) {// PUT
-		final ResponseVO status = new ResponseVO();
 		try {
 			if (error.hasErrors()) {
 				status.setStatus("Enter mandatory details in valid format");
@@ -106,9 +105,13 @@ public class EmployeeController {
 
 	@PutMapping("delete/{id}") // status disable. maintains record
 	public ResponseVO delete(@PathVariable String id) {
+		try {
 		employeeService.remove(id);
-		final ResponseVO status = new ResponseVO();
 		status.setStatus("success");
+		}catch(Exception ex) {
+			status.setStatus("Failed!");
+			status.setMessage(ex.getMessage());
+		}
 		return status;
 	}
 }

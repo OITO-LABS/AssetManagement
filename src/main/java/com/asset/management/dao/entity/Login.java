@@ -1,6 +1,8 @@
 package com.asset.management.dao.entity;
 
 import java.util.Date;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -58,6 +60,9 @@ public class Login {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "emp_id")
 	private Employee employee;
+	
+	@Column(name="employee_id")
+	private Long employeeId;
 	
 
 }
