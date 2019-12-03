@@ -22,6 +22,5 @@ public class LoginVo {
 	private Date loginTime;
 	private Date logoutTime;
 	private Role role;
-//	private Employee employee;
 	private Long employeeId;
 }
