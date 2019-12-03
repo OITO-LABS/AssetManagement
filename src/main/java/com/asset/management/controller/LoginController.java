@@ -1,6 +1,8 @@
 package com.asset.management.controller;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,11 +23,23 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetController.class);
+
 	// login
 
 	@PostMapping
 	public LoginVo login(@RequestBody LoginVo logVo) {
-		return loginService.login(logVo);
+		try {
+			return loginService.login(logVo);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			ResponseVO response=new ResponseVO();
+			response.setStatus("failed");
+			response.setMessage("Username or password or wrong");
+			logVo.setResponse(response);
+		}
+		return logVo;
 	}
 
 	@PostMapping("reset")

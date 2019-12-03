@@ -24,7 +24,7 @@ public interface LoginService {
     String decryptPassword(String password);
 
 
-    LoginVo login(LoginVo logVo);
+    LoginVo login(LoginVo logVo) throws Exception;
 
 
 	Employee findEmp(String mail) throws Exception;
