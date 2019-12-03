@@ -57,9 +57,9 @@ public class Login {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "emp_id")
-	private Employee employee;
+//	@ManyToOne(cascade = CascadeType.PERSIST)
+//	@JoinColumn(name = "emp_id")
+//	private Employee employee;
 	
 	@Column(name="employee_id")
 	private Long employeeId;
