@@ -2,6 +2,8 @@ package com.asset.management.dao.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,6 +43,7 @@ public class Employee {
 	@Column(name = "blood_group")
 	private String bloodGroup;
 	@Column(name = "enable_status")
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	@Column(name = "emp_no")
 	private String empNo;

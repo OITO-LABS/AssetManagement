@@ -1,4 +1,5 @@
 
+
 package com.asset.management.dao;
 
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
-import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
 import com.asset.management.VO.PaginationVO;
 import com.asset.management.VO.mapping.AssetMapperInterface;
@@ -45,7 +45,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private LoginService loginService;
 	@Override
 	public List<EmployeeVo> selectAll() {
-		final List<Employee> employee = employeeRepository.findAll();
+		final String status = (String.valueOf((Status.Active).name()));
+		final List<Employee> employee = employeeRepository.getEmpNo(status);
 		return mappingObj.employeeListConvert(employee);
 	}
 
@@ -118,13 +119,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		final Employee emp = employeeRepository.findByEmpNo(empNo);
 		emp.setStatus(Status.Inactive);
 		employeeRepository.flush();
+		
 
 	}
 
 	@Override
 	public Page<Employee> page(PaginationVO pagination) {
 		final Pageable pageable = PageRequest.of(pagination.getPage(), pagination.getLimit());
-		final String status = (String.valueOf((Status.Active).ordinal()));
+		final String status = (String.valueOf((Status.Active).name()));
 		return employeeRepository.findE(status, pageable);
 	}
 

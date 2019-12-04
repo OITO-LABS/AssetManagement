@@ -2,12 +2,14 @@ package com.asset.management.service;
 
 import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.Mail;
+import com.asset.management.VO.ResponseVO;
+import com.asset.management.dao.entity.Employee;
 
 public interface LoginService {
 
-	void resetPassword(LoginVo loginVo);
+	ResponseVO resetPassword(LoginVo loginVo) throws Exception;
 
-
+	//validate password
 	void validatePassword();
 
 	void sendmail(Mail obj);
@@ -22,6 +24,9 @@ public interface LoginService {
     String decryptPassword(String password);
 
 
-    LoginVo login(LoginVo logVo);
+    LoginVo login(LoginVo logVo) throws Exception;
+
+
+	Employee findEmp(String mail) throws Exception;
 
 }

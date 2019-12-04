@@ -33,7 +33,7 @@ public class ReimbursementDetails {
 	private ReimbursementTrack reimbursementTrack;
 
 	@Column(name = "reimbursement_bill_date")
-	private BigInteger billDate;
+	private String billDate;
 
 	@Column(name = "reimbursement_description")
 	private String reimbursementDescription;

@@ -77,7 +77,7 @@ public class AssetListConverter<T> {
 		for (final Object[] result : resultSet) {
 			final AssetDetailsVO asset = new AssetDetailsVO();
 			asset.setAssetId((BigInteger) result[0]);
-			asset.setEmpId((BigInteger) result[1]);
+			asset.setEmpId((BigInteger)result[1]);
 			asset.setEmpNo((String) result[2]);
 			asset.setFname((String) result[3]);
 			asset.setLname((String) result[4]);
@@ -94,12 +94,10 @@ public class AssetListConverter<T> {
 		return assetDetails;
 	}
 
-	@SuppressWarnings("unchecked")
-	public static List<ResultSetVO> pageConvertion(@SuppressWarnings("rawtypes") List list) {
+	public static List<ResultSetVO> pageConvertion(List list) {
 		final List<ResultSetVO> resultSetVO = new ArrayList<>();
 		list.forEach((temp) -> {
 			System.out.println(temp);
-			@SuppressWarnings("unused")
 			final ResultSetVO assetVO = new ResultSetVO(temp);
 
 		});

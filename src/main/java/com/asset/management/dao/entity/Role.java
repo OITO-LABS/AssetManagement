@@ -4,3 +4,4 @@ package com.asset.management.dao.entity;
 public enum Role {
 	admin,employee,manager,officer
 }
+//role

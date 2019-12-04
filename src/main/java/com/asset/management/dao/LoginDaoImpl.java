@@ -1,16 +1,24 @@
 package com.asset.management.dao;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.asset.management.VO.EmployeeVo;
 import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.ResponseVO;
+import com.asset.management.VO.mapping.EmployeeMapping;
 import com.asset.management.VO.mapping.LoginMapper;
 import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Login;
 import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
+import com.asset.management.dao.repository.EmployeeRepository;
 import com.asset.management.dao.repository.LoginRepository;
+import com.asset.management.service.LoginService;
 
 @Component
 public class LoginDaoImpl implements LoginDao {
@@ -20,17 +28,29 @@ public class LoginDaoImpl implements LoginDao {
 	@Autowired
 	private LoginMapper loginMap;
 	
-
+	@Autowired
+	EmployeeRepository employeeRepository;
+	
+	@Autowired
+	LoginService logService;
+	
+	@Autowired
+	EmployeeMapping empMap;
 
 	@Override
 	public ResponseVO create(Employee employee) {
-		Login loginEntity=new Login();
+		Login log=new Login();
 		ResponseVO response=new ResponseVO();
-		loginEntity.setUsername(employee.getEmail());
-		loginEntity.setEmployee(employee);
-		loginEntity.setStatus(Status.Inactive);
-		loginEntity.setRole(Role.employee);
-		if(loginRepository.saveAndFlush(loginEntity).getLoginId()!=null) {
+		log.setUsername(employee.getEmail());
+		log.setStatus(Status.Inactive);
+		log.setRole(Role.employee);
+		log.setEmployeeId(employee.getEmpId());
+		try {
+			loginRepository.save(log);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(log.getLoginId()!=null) {
 			response.setMessage("Login details added");
 			response.setStatus("success");
 		}
@@ -41,6 +61,10 @@ public class LoginDaoImpl implements LoginDao {
 	public LoginVo login(LoginVo logVo) throws Exception{
 		Login log=loginRepository.findByUsername(logVo.getUsername());
 		if(log!=null && log.getPassword().equals(logVo.getPassword())) {
+			DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+			Calendar calobj = Calendar.getInstance();
+			String password=log.getPassword();
+			log.setLoginTime(calobj.getTime());
 			return loginMap.loginReConvertion(log);
 		}
 		else {
@@ -57,19 +81,33 @@ public class LoginDaoImpl implements LoginDao {
 
 	}
 
-	public ResponseVO update(LoginVo logVo) {
+	//update
+	public ResponseVO update(LoginVo logVo) throws Exception {
 		ResponseVO response=new ResponseVO();
 		Login logEntity=loginMap.loginConvertion(logVo);
-		Login demoEntity=loginRepository.findByUsername(logVo.getUsername());
+		Login demoEntity=loginRepository.findByEmployeeId(logVo.getEmployeeId());
 		if(demoEntity.getUsername().equals(logEntity.getUsername())) {
+			demoEntity.setPassword(logEntity.getPassword());
+			demoEntity.setStatus(Status.Active);
+			loginRepository.save(demoEntity);
 			response.setStatus("success");
+			
 			response.setMessage("Password reset successfully");
 		}
 		else {
-			response.setStatus("failed");
-			response.setMessage("Your entered a wrong one");
+			throw new Exception("Not a valid user");
 		}
 		return response;
+	}
+
+	@Override
+	public Employee findEmp(String mail) throws Exception {
+		Employee emp = employeeRepository.findByEmail(mail);
+		if(emp!=null) {
+		return emp;
+		}else {
+			throw new Exception("Enter your registered e-mail address");
+		}
 	}
 
 

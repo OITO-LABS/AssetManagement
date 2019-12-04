@@ -1,7 +1,6 @@
 package com.asset.management.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
@@ -30,6 +29,4 @@ public interface EmployeeDao {
 	Page<Employee> searchEmployee(PaginationVO pagination);
 
 	List<String> disable(Long login);
-	
-	Optional<Employee> findEmployee(Long empId);
 }
