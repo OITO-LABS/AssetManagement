@@ -1,5 +1,4 @@
 
-
 package com.asset.management.dao;
 
 import java.util.List;
@@ -13,16 +12,20 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.asset.management.VO.CategoryVo;
 import com.asset.management.VO.ListBillVo;
 import com.asset.management.VO.ListPageData;
 import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ReimbursementTrackVo;
 import com.asset.management.VO.ResponseVO;
+import com.asset.management.VO.mapping.CategoryMapper;
 import com.asset.management.VO.mapping.ReimbursementMapper;
 import com.asset.management.VO.mapping.ReimbursementTrackMapper;
+import com.asset.management.dao.entity.CategoryDetails;
 import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.ReimbursementDetails;
 import com.asset.management.dao.entity.ReimbursementTrack;
+import com.asset.management.dao.repository.CategoryRepository;
 import com.asset.management.dao.repository.EmployeeRepository;
 import com.asset.management.dao.repository.ReimbursementRepository;
 import com.asset.management.dao.repository.ReimbursementTrackRepository;
@@ -40,6 +43,12 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Autowired
 	ReimbursementTrackMapper reimbursementTrackMapper;
+
+	@Autowired
+	CategoryMapper categoryMapper;
+
+	@Autowired
+	CategoryRepository categoryRepository;
 
 	@Autowired
 	Validator reimbursementValidator;
@@ -68,6 +77,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		logger.info(" list size " + length);
 		if (returnValue.getStatus().equals("success")) {
 			reimbursementTrackRepository.save(reimbursementTrack);
+			logger.info("Data inserted Successfully");
 		}
 
 		return returnValue;
@@ -87,6 +97,15 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		listBill.setEmpDesignation(empData.getDesignation());
 		logger.info("{}", listBill);
 		return listBill;
+	}
+
+	@Override
+	public List<CategoryVo> getCategoryDetails() {
+		final List<CategoryDetails> category = categoryRepository.selectCategory();
+		final List<CategoryVo> categoryVo = categoryMapper.entityListConvert(category);
+		logger.info("{}", categoryVo);
+		return categoryVo;
+
 	}
 
 	@Override
@@ -153,10 +172,10 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public ListPageData searchEmployeeId(PageViewVo page) {
-	
+
 		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
 				Sort.by("reimbursement_date").descending());
-		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNo(page.getEmpNo(),pageable);
+		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNo(page.getEmpNo(), pageable);
 		final List<Object[]> dataList = data.getContent();
 		final ListPageData pageData = new ListPageData();
 		pageData.setReimbursementDetails(listConverter.reConvertion(dataList));
@@ -173,7 +192,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public ListPageData searchEmployeeDate(PageViewVo page) {
 		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
 				Sort.by("reimbursement_date").descending());
-		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNoDate(page.getDateFrom(),page.getDateTo(), page.getEmpNo(), pageable);
+		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNoDate(page.getDateFrom(),
+				page.getDateTo(), page.getEmpNo(), pageable);
 		final List<Object[]> dataList = data.getContent();
 		final ListPageData pageData = new ListPageData();
 		pageData.setReimbursementDetails(listConverter.reConvertion(dataList));
@@ -187,4 +207,3 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 }
-

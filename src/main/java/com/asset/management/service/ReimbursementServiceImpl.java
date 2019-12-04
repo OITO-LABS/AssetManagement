@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.asset.management.VO.CategoryVo;
 import com.asset.management.VO.ListBillVo;
 import com.asset.management.VO.ListPageData;
 import com.asset.management.VO.PageViewVo;
@@ -29,6 +30,11 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 		logger.info("In Service :Get method invoked !!!!!!!!!!");
 		return reimbursementDao.applyReimbursement(data);
 
+	}
+	
+	@Override
+	public List<CategoryVo> getCategoryDetails() {
+		return reimbursementDao.getCategoryDetails();
 	}
 
 	@Override

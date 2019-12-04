@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.asset.management.VO.CategoryVo;
 import com.asset.management.VO.ListBillVo;
 import com.asset.management.VO.ListPageData;
 import com.asset.management.VO.PageViewVo;
@@ -17,6 +18,8 @@ public interface ReimbursementService {
 	ResponseVO applyReimbursement(ReimbursementTrackVo data);
 
 	ListBillVo getReimbursementDetails(Long reimbursement_id);
+	
+	List<CategoryVo> getCategoryDetails();
 
 	List<ReimbursementTrackVo> getReimbusrmentId();
 
