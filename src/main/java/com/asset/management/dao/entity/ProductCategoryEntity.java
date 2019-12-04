@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.entity;
 
 import java.util.Set;
@@ -27,3 +28,4 @@ public class ProductCategoryEntity {
 	@OneToMany(mappedBy = "")
 	Set<AssetEntity> assetEntity;
 }
+

@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import java.util.Date;
@@ -16,3 +17,4 @@ public class PageViewVo {
 	int size;
 	String empNo;
 }
+

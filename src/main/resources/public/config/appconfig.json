@@ -3,9 +3,6 @@
   "apis": {
       "baseurl": "http://localhost:8080/",
       "portalSettings": "/data/portal-settings.json",
-
-      "reset": "api/login/reset",
-
       "getEmpDetails":"api/employee/:empId",    
       "updateEmployee":"api/employee/:empId",
       "getAsset":"api/asset/details/:assetId",
@@ -30,10 +27,7 @@
       "reimbursementEmployee":"api/reimbursement/emp-id/",
       "reimbursementBill":"api/reimbursement/emp-id/:reimbursementId",
       "reimbursementApply":"api/reimbursement/apply",
-      "reimbursementSearch":"api/reimbursement/search-emp-id",
-      "reimbursementDateAndSearch":"api/reimbursement/search-emp-id-date",
 
-      "login":"api/login",
       "params": {
         "commonparams": "commonparams"
       }

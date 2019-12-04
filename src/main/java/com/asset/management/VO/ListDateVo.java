@@ -1,14 +1,19 @@
-
 package com.asset.management.VO;
+
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
-public class ProductCategoryVO {
-	private String productCategoryName;
-}
+public class ListDateVo {
 
+	Date dateFrom;
+	Date dateTo;
+	int page;
+	int size;
+
+}

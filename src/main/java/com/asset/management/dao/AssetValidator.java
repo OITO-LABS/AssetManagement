@@ -1,3 +1,4 @@
+
 package com.asset.management.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,3 +78,4 @@ public class AssetValidator implements Validation {
 	}
 
 }
+

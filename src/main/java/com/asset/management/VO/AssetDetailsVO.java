@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import java.math.BigInteger;
@@ -27,3 +28,4 @@ public class AssetDetailsVO {
 	private Date returnDate;
 	private String cause;
 }
+

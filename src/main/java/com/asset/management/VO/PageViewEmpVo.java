@@ -1,14 +1,16 @@
-
 package com.asset.management.VO;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
-public class ProductCategoryVO {
-	private String productCategoryName;
-}
+public class PageViewEmpVo {
 
+	String empNo;
+	int page;
+	int size;
+
+}

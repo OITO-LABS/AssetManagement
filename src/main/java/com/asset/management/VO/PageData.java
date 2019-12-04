@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import java.util.List;
@@ -18,3 +19,4 @@ public class PageData {
 	private Long totalElements;
 	private int totalPages;
 }
+

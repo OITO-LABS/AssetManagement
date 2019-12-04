@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.entity;
 
 import java.util.List;

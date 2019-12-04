@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.repository;
 
 import java.util.List;
@@ -11,7 +12,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.asset.management.dao.entity.Employee;
-import com.asset.management.dao.entity.Status;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
@@ -37,6 +37,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 	Employee findByHealthCardNo(String healthCardNo);
 
-	@Query(value = "select * from employee_details emp where emp_fname like %?1% or emp_no like %?1% or email like %?1%", nativeQuery = true)
+	@Query(value = "select * from employee_details emp where emp_fname like %?1% or emp_no like %?1%", nativeQuery = true)
 	Page<Employee> searchEmployee(Optional<String> searchkey, Pageable pageable);
 }

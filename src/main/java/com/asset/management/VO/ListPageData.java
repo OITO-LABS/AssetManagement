@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import java.util.List;
@@ -22,3 +23,4 @@ public class ListPageData {
 	private int totalPages;
 
 }
+
