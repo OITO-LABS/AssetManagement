@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import org.springframework.http.HttpStatus;
@@ -12,3 +13,4 @@ public class ResponseVO {
 	private String message;
 	private HttpStatus errorcode;
 }
+

@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import javax.validation.constraints.NotBlank;
@@ -39,3 +40,4 @@ public class EmployeeVo {
 	private Status status;
 	private String empNo;
 }
+

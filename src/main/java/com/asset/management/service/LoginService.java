@@ -1,3 +1,4 @@
+
 package com.asset.management.service;
 
 import com.asset.management.VO.LoginVo;
@@ -9,24 +10,19 @@ public interface LoginService {
 
 	ResponseVO resetPassword(LoginVo loginVo) throws Exception;
 
-	//validate password
-	void validatePassword();
-
 	void sendmail(Mail obj);
 
+	String generatePasswordToken(Long empId) throws Exception;
 
-	String generatePasswordToken(Long empId);
-	
 	Long decryptToken(String token);
-	
-    String encryptPassword(String password);
-    
-    String decryptPassword(String password);
 
+	String encryptPassword(String password) throws Exception;
 
-    LoginVo login(LoginVo logVo) throws Exception;
+	String decryptPassword(String password);
 
+	LoginVo login(LoginVo logVo) throws Exception;
 
 	Employee findEmp(String mail) throws Exception;
 
 }
+

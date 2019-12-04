@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import java.util.Date;
@@ -20,3 +21,4 @@ public class AssetAssignVO {
 	private Date addDate;
 	private Date updatedDate;
 }
+

@@ -1,10 +1,11 @@
+
+
 package com.asset.management.dao;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.asset.management.VO.CategoryVo;
 import com.asset.management.VO.ListBillVo;
 import com.asset.management.VO.ListPageData;
 import com.asset.management.VO.PageViewVo;
@@ -15,7 +16,7 @@ public interface ReimbursementDao {
 
 	ResponseVO applyReimbursement(ReimbursementTrackVo data);
 
-	List<CategoryVo> getCategoryDetails();
+	// List<CategoryVo> getCategoryDetails();
 
 	ListBillVo getReimbusementDetails(Long reimbursement_id);
 
@@ -30,7 +31,7 @@ public interface ReimbursementDao {
 	ListPageData searchEmployeeId(@RequestBody PageViewVo page);
 	
 	ListPageData searchEmployeeDate(@RequestBody PageViewVo page);
-	
-	ListPageData getBillByDate(@RequestBody PageViewVo page);
 
 }
+
+

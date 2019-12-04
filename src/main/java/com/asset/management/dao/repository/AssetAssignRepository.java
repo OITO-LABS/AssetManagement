@@ -1,3 +1,5 @@
+
+
 package com.asset.management.dao.repository;
 
 import java.util.List;
@@ -46,3 +48,4 @@ public interface AssetAssignRepository extends JpaRepository<AssetAssignEntity, 
 	List<Object[]> findAssetHistory(@Param("assetId") Long assetId);
 
 }
+

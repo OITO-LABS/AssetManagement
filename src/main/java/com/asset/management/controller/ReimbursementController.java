@@ -1,9 +1,8 @@
+
+
 package com.asset.management.controller;
 
-import java.util.List;
-
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import com.asset.management.VO.ListPageData;
 import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ReimbursementTrackVo;
 import com.asset.management.VO.ResponseVO;
-import com.asset.management.VO.CategoryVo;
 import com.asset.management.service.ReimbursementService;
 
 @RestController
@@ -31,22 +29,11 @@ public class ReimbursementController {
 		return reimbursementService.applyReimbursement(data);
 
 	}
-	
-	@GetMapping("list-category")
-	public List<CategoryVo> selectAll() {
-		return reimbursementService.getCategoryDetails();
-	}
 
 	@GetMapping("emp-id/{reimbursementId}")
 	public ListBillVo get(@PathVariable Long reimbursementId) {
 		return reimbursementService.getReimbursementDetails(reimbursementId);
 
-	}
-	
-	@PostMapping("emp-id-date")
-	public ListPageData getBillByDate(@RequestBody PageViewVo page)
-	{
-		return reimbursementService.getBillByDate(page);
 	}
 
 	@PostMapping("reimbursement-list")
@@ -80,3 +67,5 @@ public class ReimbursementController {
 	
 	
 }
+
+

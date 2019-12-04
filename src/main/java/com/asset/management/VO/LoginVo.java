@@ -1,3 +1,5 @@
+
+
 package com.asset.management.VO;
 
 import java.util.Date;
@@ -22,6 +24,8 @@ public class LoginVo {
 	private Date loginTime;
 	private Date logoutTime;
 	private Role role;
-	private Long EmployeeId;
+	private Long employeeId;
 	private ResponseVO response;
 }
+
+

@@ -1,3 +1,4 @@
+
 package com.asset.management.exception;
 
 import org.springframework.http.HttpStatus;
@@ -36,3 +37,4 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
+

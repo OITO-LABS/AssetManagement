@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.entity;
 
 import java.util.Date;
@@ -64,3 +65,4 @@ public class AssetAssignEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatedDate;
 }
+

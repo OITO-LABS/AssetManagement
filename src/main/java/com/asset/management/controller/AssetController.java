@@ -1,8 +1,8 @@
+
 package com.asset.management.controller;
 
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,7 @@ import com.asset.management.VO.AssetDetailsVO;
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.PageData;
 import com.asset.management.VO.PaginationVO;
+import com.asset.management.VO.ProductCategoryVO;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.exception.InstallationException;
 import com.asset.management.service.AssetServiceImpl;
@@ -26,12 +27,10 @@ import com.asset.management.service.AssetServiceImpl;
 public class AssetController {
 	@Autowired
 	AssetServiceImpl assetServiceImpl;
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetController.class);
 
 	@GetMapping
 	public String getString() {
 		try {
-			logger.info("Asset management system...");
 			return ("getString executed");
 		} catch (final Exception ex) {
 			final ResponseVO response = new ResponseVO();
@@ -58,6 +57,20 @@ public class AssetController {
 	public Object create(@RequestBody AssetVO assetVo) {
 		try {
 			return assetServiceImpl.create(assetVo);
+		} catch (final Exception ex) {
+			final ResponseVO response = new ResponseVO();
+			response.setStatus("failed");
+			response.setMessage(ex.getMessage());
+			throw new InstallationException(ex);
+
+		}
+
+	}
+
+	@GetMapping("productCategory")
+	public List<ProductCategoryVO> getProductDetails() {
+		try {
+			return assetServiceImpl.productCategoryDetails();
 		} catch (final Exception ex) {
 			final ResponseVO response = new ResponseVO();
 			response.setStatus("failed");
@@ -137,7 +150,6 @@ public class AssetController {
 	@PutMapping("/{assetId}")
 	public ResponseVO updateAsset(@PathVariable Long assetId, @RequestBody AssetVO assetVO) {
 		try {
-			System.out.print("hi");
 			return assetServiceImpl.updateAssetDetails(assetId, assetVO);
 		} catch (final Exception ex) {
 			final ResponseVO response = new ResponseVO();
@@ -148,3 +160,5 @@ public class AssetController {
 		}
 	}
 }
+
+

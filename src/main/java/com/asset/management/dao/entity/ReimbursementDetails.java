@@ -1,3 +1,5 @@
+
+
 package com.asset.management.dao.entity;
 
 import java.math.BigInteger;
@@ -47,3 +49,5 @@ public class ReimbursementDetails {
 	@Column(name = "category_name")
 	private String categoryName;
 }
+
+

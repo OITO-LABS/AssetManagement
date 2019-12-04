@@ -1,3 +1,4 @@
+
 package com.asset.management.dao;
 
 import com.asset.management.VO.ResponseVO;
@@ -10,3 +11,4 @@ public interface Validation {
 
 	ResponseVO updateValidation(Long assetId, AssetEntity asset);
 }
+

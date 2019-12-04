@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.entity;
 
 import java.util.Date;
@@ -69,3 +70,4 @@ public class AssetEntity {
 	@Column(name = "employee_details")
 	Long employeeId;
 }
+

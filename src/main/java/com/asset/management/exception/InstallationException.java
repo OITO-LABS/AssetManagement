@@ -1,3 +1,4 @@
+
 package com.asset.management.exception;
 
 import java.util.Collections;
@@ -96,3 +97,4 @@ public class InstallationException extends RuntimeException {
 	}
 
 }
+

@@ -1,3 +1,5 @@
+
+
 package com.asset.management.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,10 +88,6 @@ public class LoginServiceImpl implements LoginService {
 			return logDao.update(log);
 	}
 
-	@Override
-	public void validatePassword() {
-
-	}
 
 	@Override
 	public String encryptPassword(String password) {
@@ -151,3 +149,5 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 }
+
+

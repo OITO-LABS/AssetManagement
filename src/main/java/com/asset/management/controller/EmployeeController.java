@@ -1,3 +1,4 @@
+
 package com.asset.management.controller;
 
 import java.util.List;
@@ -24,15 +25,13 @@ import com.asset.management.VO.ResponseVO;
 import com.asset.management.dao.entity.Employee;
 import com.asset.management.service.EmployeeService;
 
-import org.slf4j.LoggerFactory;
-
 @RestController
 @RequestMapping("api/employee")
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	final ResponseVO status = new ResponseVO();
 
 	@GetMapping("listall") // List basic details of all
 	public List<EmployeeVo> selectAll() {
@@ -62,7 +61,6 @@ public class EmployeeController {
 
 	@PostMapping
 	public ResponseVO register(@Valid @RequestBody EmployeeVo obj, Errors error) throws Exception {
-		final ResponseVO status = new ResponseVO();
 		try {
 			if (error.hasErrors()) {
 				status.setStatus("Enter mandatory details in valid format");
@@ -74,8 +72,6 @@ public class EmployeeController {
 		} catch (final Exception c) {
 			status.setStatus("Failed!");
 			status.setMessage(c.getMessage());
-			logger.info("Exception\n "+c);
-			c.printStackTrace();
 
 		}
 		return status;
@@ -84,7 +80,6 @@ public class EmployeeController {
 	@DeleteMapping("/{id}")
 	public ResponseVO deleteUser(@PathVariable Long id) {// DELETE
 		employeeService.delete(id);
-		final ResponseVO status = new ResponseVO();
 		status.setStatus("success");
 		return status;
 	}
@@ -96,7 +91,6 @@ public class EmployeeController {
 
 	@PutMapping("/{id}") // update all fields
 	public ResponseVO update(@PathVariable Long id, @Valid @RequestBody EmployeeVo obj, Errors error) {// PUT
-		final ResponseVO status = new ResponseVO();
 		try {
 			if (error.hasErrors()) {
 				status.setStatus("Enter mandatory details in valid format");
@@ -112,9 +106,14 @@ public class EmployeeController {
 
 	@PutMapping("delete/{id}") // status disable. maintains record
 	public ResponseVO delete(@PathVariable String id) {
+		try {
 		employeeService.remove(id);
-		final ResponseVO status = new ResponseVO();
 		status.setStatus("success");
+		}catch(Exception ex) {
+			status.setStatus("Failed!");
+			status.setMessage(ex.getMessage());
+		}
 		return status;
 	}
+
 }

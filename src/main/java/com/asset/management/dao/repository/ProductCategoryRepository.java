@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,3 +12,4 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
 	ProductCategoryEntity findByProductCategoryName(@Param("productCategoryName") String productCategoryName);
 
 }
+
