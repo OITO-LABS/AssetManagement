@@ -28,8 +28,10 @@ public interface ReimbursementTrackRepository extends JpaRepository<Reimbursemen
 	@Query(value = "select * from reimbursement_track", nativeQuery = true)
 	Page getReimbursementView(Pageable page);
 
-	Page findByReimbursementSearchEmpNoDate(Date dateFrom, Date dateTo, String empNo, Pageable pageable);
 
-	Page findByReimbursementSearchEmpNo(String empNo, Pageable pageable);
-
+	@Query(value = "select * from reimbursement_track re where emp_no like %?1% ", nativeQuery = true)
+	Page findByReimbursementSearchEmpNo(String searchkey,Pageable pageable);
+	
+	@Query(value = "select * from reimbursement_track t where t.reimbursement_date BETWEEN :startDate AND :endDate AND t.emp_no=:empNo", nativeQuery = true)
+	Page findByReimbursementSearchEmpNoDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate,@Param("empNo") String empNo,Pageable pageable);
 }
