@@ -45,8 +45,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private LoginService loginService;
 	@Override
 	public List<EmployeeVo> selectAll() {
-		final String status = (String.valueOf((Status.Active).name()));
-		final List<Employee> employee = employeeRepository.getEmpNo(status);
+		final List<Employee> employee = employeeRepository.findAll();
 		return mappingObj.employeeListConvert(employee);
 	}
 
@@ -119,7 +118,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		final Employee emp = employeeRepository.findByEmpNo(empNo);
 		emp.setStatus(Status.Inactive);
 		employeeRepository.flush();
-		
 
 	}
 
@@ -156,3 +154,4 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 }
+

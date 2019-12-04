@@ -1,4 +1,7 @@
+
 package com.asset.management.VO;
+
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,8 +11,10 @@ import lombok.ToString;
 @Getter
 @ToString
 public class PageViewVo {
-
+	Date dateFrom;
+	Date dateTo;
 	int page;
 	int size;
-
+	String empNo;
 }
+

@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.entity;
 
 import javax.persistence.Column;
@@ -49,3 +50,4 @@ public class Employee {
 	private String empNo;
 
 }
+

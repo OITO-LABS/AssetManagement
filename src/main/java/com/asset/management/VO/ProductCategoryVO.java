@@ -1,3 +1,4 @@
+
 package com.asset.management.VO;
 
 import lombok.Getter;
@@ -10,3 +11,4 @@ import lombok.ToString;
 public class ProductCategoryVO {
 	private String productCategoryName;
 }
+

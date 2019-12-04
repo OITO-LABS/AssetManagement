@@ -1,6 +1,8 @@
+
 package com.asset.management.service;
 
 import java.util.List;
+
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.asset.management.VO.ListBillVo;
-import com.asset.management.VO.ListDateVo;
 import com.asset.management.VO.ListPageData;
-import com.asset.management.VO.PageViewEmpVo;
+import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ReimbursementTrackVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.dao.ReimbursementDaoImpl;
@@ -41,22 +42,33 @@ public class ReimbursementServiceImpl implements ReimbursementService {
 	}
 
 	@Override
-	public ListPageData reimbursementGetEmpDetails(@RequestBody PageViewEmpVo page) {
+	public ListPageData reimbursementGetEmpDetails(@RequestBody PageViewVo page) {
 
 		return reimbursementDao.reimbursementGetEmpDetails(page);
 	}
 
 	@Override
-	public ListPageData viewData(ListDateVo page) {
+	public ListPageData viewData(PageViewVo page) {
 
 		return reimbursementDao.viewData(page);
 	}
 
 	@Override
-	public ListPageData getByDate(ListDateVo date) {
+	public ListPageData getByDate(PageViewVo date) {
 
 		return reimbursementDao.getByDate(date);
 
 	}
 
+	@Override
+	public ListPageData searchEmployee(PageViewVo page) {
+		
+		return reimbursementDao.searchEmployeeId(page);
+	}
+
+	@Override
+	public ListPageData searchEmployeeDate(PageViewVo page) {
+		return reimbursementDao.searchEmployeeDate(page);
+	}
+//
 }

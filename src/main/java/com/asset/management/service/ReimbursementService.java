@@ -1,3 +1,4 @@
+
 package com.asset.management.service;
 
 import java.util.List;
@@ -5,9 +6,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.asset.management.VO.ListBillVo;
-import com.asset.management.VO.ListDateVo;
 import com.asset.management.VO.ListPageData;
-import com.asset.management.VO.PageViewEmpVo;
+import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ReimbursementTrackVo;
 import com.asset.management.VO.ResponseVO;
 
@@ -19,9 +19,14 @@ public interface ReimbursementService {
 
 	List<ReimbursementTrackVo> getReimbusrmentId();
 
-	ListPageData getByDate(ListDateVo date);
+	ListPageData getByDate(PageViewVo date);
 
-	ListPageData reimbursementGetEmpDetails(@RequestBody PageViewEmpVo page);
+	ListPageData reimbursementGetEmpDetails(@RequestBody PageViewVo page);
 
-	ListPageData viewData(ListDateVo page);
+	ListPageData viewData(PageViewVo page);
+	
+	ListPageData searchEmployee(@RequestBody PageViewVo page);
+	
+	ListPageData searchEmployeeDate(@RequestBody PageViewVo page);
 }
+

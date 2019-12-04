@@ -1,3 +1,4 @@
+
 package com.asset.management.dao.repository;
 
 import java.util.Date;
@@ -26,5 +27,9 @@ public interface ReimbursementTrackRepository extends JpaRepository<Reimbursemen
 
 	@Query(value = "select * from reimbursement_track", nativeQuery = true)
 	Page getReimbursementView(Pageable page);
+
+	Page findByReimbursementSearchEmpNoDate(Date dateFrom, Date dateTo, String empNo, Pageable pageable);
+
+	Page findByReimbursementSearchEmpNo(String empNo, Pageable pageable);
 
 }

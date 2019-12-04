@@ -1,3 +1,4 @@
+
 package com.asset.management.dao;
 
 import java.util.List;
@@ -12,9 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.asset.management.VO.ListBillVo;
-import com.asset.management.VO.ListDateVo;
 import com.asset.management.VO.ListPageData;
-import com.asset.management.VO.PageViewEmpVo;
+import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.ReimbursementTrackVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.VO.mapping.ReimbursementMapper;
@@ -66,7 +66,6 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		final int length = reimbursementDetails.size();
 		logger.info(" list size " + length);
 		if (returnValue.getStatus().equals("success")) {
-			
 			reimbursementTrackRepository.save(reimbursementTrack);
 		}
 
@@ -96,7 +95,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 	@Override
-	public ListPageData getByDate(ListDateVo date) {
+	public ListPageData getByDate(PageViewVo date) {
 
 		final Pageable pageable = PageRequest.of(date.getPage(), date.getSize(),
 				Sort.by("reimbursement_date").descending());
@@ -116,7 +115,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 	@Override
-	public ListPageData reimbursementGetEmpDetails(@RequestBody PageViewEmpVo page) {
+	public ListPageData reimbursementGetEmpDetails(@RequestBody PageViewVo page) {
 
 		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
 				Sort.by("reimbursement_date").descending());
@@ -134,7 +133,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 	@Override
-	public ListPageData viewData(ListDateVo page) {
+	public ListPageData viewData(PageViewVo page) {
 
 		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
 				Sort.by("reimbursement_date").descending());
@@ -151,4 +150,40 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		return pageData;
 	}
 
+	@Override
+	public ListPageData searchEmployeeId(PageViewVo page) {
+	
+		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
+				Sort.by("reimbursement_date").descending());
+		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNo(page.getEmpNo(),pageable);
+		final List<Object[]> dataList = data.getContent();
+		final ListPageData pageData = new ListPageData();
+		pageData.setReimbursementDetails(listConverter.reConvertion(dataList));
+		pageData.setPageable(data.getPageable());
+		pageData.setNumber(data.getNumber());
+		pageData.setNumberOfElements(data.getNumberOfElements());
+		pageData.setSize(data.getSize());
+		pageData.setTotalElements(data.getTotalElements());
+		pageData.setTotalPages(data.getTotalPages());
+		return pageData;
+	}
+
+	@Override
+	public ListPageData searchEmployeeDate(PageViewVo page) {
+		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
+				Sort.by("reimbursement_date").descending());
+		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNoDate(page.getDateFrom(),page.getDateTo(), page.getEmpNo(), pageable);
+		final List<Object[]> dataList = data.getContent();
+		final ListPageData pageData = new ListPageData();
+		pageData.setReimbursementDetails(listConverter.reConvertion(dataList));
+		pageData.setPageable(data.getPageable());
+		pageData.setNumber(data.getNumber());
+		pageData.setNumberOfElements(data.getNumberOfElements());
+		pageData.setSize(data.getSize());
+		pageData.setTotalElements(data.getTotalElements());
+		pageData.setTotalPages(data.getTotalPages());
+		return pageData;
+	}
+
 }
+

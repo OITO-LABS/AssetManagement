@@ -1,3 +1,4 @@
+
 package com.asset.management.service;
 
 import java.util.List;
@@ -28,3 +29,4 @@ public interface AssetService {
 
 	AssetVO getAssetById(Long assetId);
 }
+
