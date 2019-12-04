@@ -65,7 +65,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 		final int length = reimbursementDetails.size();
 		logger.info(" list size " + length);
-		if (returnValue.getStatus().equals("Success")) {
+		if (returnValue.getStatus().equals("success")) {
+			
 			reimbursementTrackRepository.save(reimbursementTrack);
 		}
 

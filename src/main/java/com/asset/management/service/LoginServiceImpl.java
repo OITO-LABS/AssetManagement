@@ -37,7 +37,7 @@ public class LoginServiceImpl implements LoginService {
 		mail.setContent(
 				"Hi,\r\n" + 
 				" Happy to have you on board and welcome to Oitolabs. Hereby,sending you a URL to setup the credentials of your account.\r\n" + 
-				"To confirm your account, please click here : http://localhost:8080/oito-trv/reset-password?" + obj.getToken());
+				"To confirm your account, please click here : http://localhost:8080/oito-trv/reset-password?t=" + obj.getToken());
 		emailService.sendSimpleMessage(mail);
 	}
 	
@@ -76,20 +76,14 @@ public class LoginServiceImpl implements LoginService {
 	
 
 	@Override
-	public ResponseVO resetPassword(LoginVo loginVo) {
-		
-		try {
-			loginVo.setUsername(loginVo.getUsername());
-			loginVo.setToken(loginVo.getToken());
-			loginVo.setPassword(encryptPassword(loginVo.getPassword()));
-			loginVo.setEmployeeId(decryptToken(loginVo.getToken()));
-			return logDao.update(loginVo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		ResponseVO response=new ResponseVO();
-		response.setStatus("failed");
-		return response;
+	public ResponseVO resetPassword(LoginVo loginVo)throws Exception{
+			LoginVo log=new LoginVo();
+			log.setUsername(loginVo.getUsername());
+			log.setToken(loginVo.getToken());
+			log.setPassword(encryptPassword(loginVo.getPassword()));
+			log.setEmployeeId(decryptToken(loginVo.getToken()));
+			System.out.println(log.getEmployeeId());
+			return logDao.update(log);
 	}
 
 	@Override

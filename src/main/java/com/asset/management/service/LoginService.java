@@ -7,7 +7,7 @@ import com.asset.management.dao.entity.Employee;
 
 public interface LoginService {
 
-	ResponseVO resetPassword(LoginVo loginVo);
+	ResponseVO resetPassword(LoginVo loginVo) throws Exception;
 
 	//validate password
 	void validatePassword();

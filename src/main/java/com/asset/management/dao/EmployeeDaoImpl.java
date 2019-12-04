@@ -1,8 +1,10 @@
 
+
 package com.asset.management.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,14 +40,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private AssetMapperInterface map;
 	
 	@Autowired
-	private LoginService loginService;
-	
+	private LoginDao loginDao;   
 	@Autowired
-	LoginDao loginDao;
-
+	private LoginService loginService;
 	@Override
 	public List<EmployeeVo> selectAll() {
-		final List<Employee> employee = employeeRepository.findAll();
+		final String status = (String.valueOf((Status.Active).name()));
+		final List<Employee> employee = employeeRepository.getEmpNo(status);
 		return mappingObj.employeeListConvert(employee);
 	}
 
@@ -62,6 +63,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					if (healthCardNo == null) {
 						emp.setStatus(Status.Active);
 						employeeRepository.save(emp);
+						
 					} else {
 						throw new Exception("Health Card no already exists!");
 					}
@@ -69,18 +71,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					throw new Exception("Employee no already exists!");
 				}
 			} else {
-				throw new Exception("Contact no already exists!");
-			}
-		} else {
+				throw new Exception("Contact no already exists!");}}
+			else {
 			throw new Exception("Email already exists!");
 		}
 		loginDao.create(emp);
+
 		Long id=(emp.getEmpId());
-		
 		Mail obj=new Mail();
 		obj.setTo(emp.getEmail());
 		obj.setToken(loginService.generatePasswordToken(id));
 		loginService.sendmail(obj);
+
 
 	}
 
@@ -117,13 +119,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		final Employee emp = employeeRepository.findByEmpNo(empNo);
 		emp.setStatus(Status.Inactive);
 		employeeRepository.flush();
+		
 
 	}
 
 	@Override
 	public Page<Employee> page(PaginationVO pagination) {
 		final Pageable pageable = PageRequest.of(pagination.getPage(), pagination.getLimit());
-		final String status = (String.valueOf((Status.Active).ordinal()));
+		final String status = (String.valueOf((Status.Active).name()));
 		return employeeRepository.findE(status, pageable);
 	}
 
@@ -145,6 +148,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			return new ArrayList<>(List.of("empNo"));
 		}
 		return new ArrayList<>(List.of("empNo", "designation", "healthCardNo"));
+	}
+
+	public Optional<Employee> findEmployee(Long empId) {
+
+		return employeeRepository.findById(empId);
 	}
 
 }

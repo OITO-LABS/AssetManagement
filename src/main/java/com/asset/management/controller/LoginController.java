@@ -29,22 +29,35 @@ public class LoginController {
 
 	@PostMapping
 	public LoginVo login(@RequestBody LoginVo logVo) {
+		ResponseVO response=new ResponseVO();
 		try {
-			return loginService.login(logVo);
+			LoginVo logVO=loginService.login(logVo);
+			response.setStatus("success");
+			logVO.setResponse(response);
+			return logVO;
 		} catch (Exception e) {
 			
 			e.printStackTrace();
-			ResponseVO response=new ResponseVO();
 			response.setStatus("failed");
-			response.setMessage("Username or password or wrong");
+			response.setMessage("Username or password wrong");
 			logVo.setResponse(response);
 		}
 		return logVo;
 	}
 
 	@PostMapping("reset")
-	public void resetPassword(@RequestBody LoginVo loginVo) {
-		loginService.resetPassword(loginVo);
+	public ResponseVO resetPassword(@RequestBody LoginVo loginVo) {
+		ResponseVO response=new ResponseVO();
+		try {
+			response.setStatus("success");
+			return loginService.resetPassword(loginVo);
+		} catch (Exception e) {
+			response.setStatus("failed");
+			response.setMessage("invalid mail id");
+			e.printStackTrace();
+
+		}
+		return response;
 	}
 	@PostMapping("/send-mail")
 	public ResponseVO mail(@RequestBody Mail obj) {
