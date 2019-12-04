@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[25],{hKt2:function(e,t,n){"use strict";n.r(t),n.d(t,"NoRecordsFound",function(){return s});var r=n("q1tI"),o=n.n(r);class s extends r.Component{constructor(e){super(e),this.state={}}render(){return o.a.createElement("div",null,o.a.createElement("h5",{className:"text-center"},"No Records Found"))}}t.default=s}}]);

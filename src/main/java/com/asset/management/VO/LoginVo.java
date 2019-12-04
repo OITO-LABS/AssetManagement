@@ -3,7 +3,6 @@ package com.asset.management.VO;
 import java.util.Date;
 
 
-import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
 
@@ -23,4 +22,5 @@ public class LoginVo {
 	private Date logoutTime;
 	private Role role;
 	private Long employeeId;
+	private ResponseVO response;
 }

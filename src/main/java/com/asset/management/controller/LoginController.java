@@ -28,8 +28,20 @@ public class LoginController {
 
 	@PostMapping
 	public LoginVo login(@RequestBody LoginVo logVo) {
-		return loginService.login(logVo);
+		ResponseVO response=new ResponseVO();
+		try {
+			LoginVo logVO=loginService.login(logVo);
+			response.setStatus("success");
+			logVO.setResponse(response);
+			return logVO;
+			} catch (Exception e) {
+			response.setStatus("failed");
+			response.setMessage("Username or password is wrong");
+			logVo.setResponse(response);
+		}
+		return logVo;
 	}
+
 
 	@PostMapping("reset")
 	public void resetPassword(@RequestBody LoginVo loginVo) {

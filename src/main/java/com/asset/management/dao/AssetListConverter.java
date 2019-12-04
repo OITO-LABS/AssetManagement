@@ -94,12 +94,10 @@ public class AssetListConverter<T> {
 		return assetDetails;
 	}
 
-	@SuppressWarnings("unchecked")
-	public static List<ResultSetVO> pageConvertion(@SuppressWarnings("rawtypes") List list) {
+	public static List<ResultSetVO> pageConvertion(List list) {
 		final List<ResultSetVO> resultSetVO = new ArrayList<>();
 		list.forEach((temp) -> {
 			System.out.println(temp);
-			@SuppressWarnings("unused")
 			final ResultSetVO assetVO = new ResultSetVO(temp);
 
 		});

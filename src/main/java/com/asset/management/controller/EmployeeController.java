@@ -98,7 +98,9 @@ public class EmployeeController {
 			status.setStatus("success");
 		} catch (final Exception c) {
 			status.setStatus("Failed!");
-			status.setMessage("Make sure unique constraints are followed.");
+		//	status.setMessage("Make sure unique constraints are followed.");
+			status.setMessage(c.getMessage());
+
 		}
 		return status;
 	}

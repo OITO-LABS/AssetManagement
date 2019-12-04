@@ -22,6 +22,7 @@ import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Status;
 import com.asset.management.dao.repository.AssetRepository;
 import com.asset.management.dao.repository.EmployeeRepository;
+import com.asset.management.dao.repository.LoginRepository;
 import com.asset.management.service.LoginService;
 
 @Component
@@ -39,12 +40,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private AssetMapperInterface map;
 	
 	@Autowired
-	private LoginDao loginDao;   
+	private LoginDao loginDao; 
+	
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private LoginRepository loginRepository;
+	
 	@Override
 	public List<EmployeeVo> selectAll() {
-		final List<Employee> employee = employeeRepository.findAll();
+		final String status = (String.valueOf((Status.Active).name()));
+		final List<Employee> employee = employeeRepository.getEmpNo(status);
 		return mappingObj.employeeListConvert(employee);
 	}
 
@@ -108,6 +115,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			employeeRepository.update(empId, emp.getFirstName(), emp.getLastName(), emp.getDesignation(),
 					emp.getEmail(), emp.getContactNo(), emp.getDob(), emp.getEmergencyContactName(),
 					emp.getEmergencyContact(), emp.getHealthCardNo(), emp.getBloodGroup(), emp.getEmpNo());
+			loginRepository.update(empId,emp.getEmail());
 		}
 	}
 
@@ -117,6 +125,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		final Employee emp = employeeRepository.findByEmpNo(empNo);
 		emp.setStatus(Status.Inactive);
 		employeeRepository.flush();
+		
 
 	}
 
