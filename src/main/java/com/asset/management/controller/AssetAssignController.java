@@ -53,7 +53,7 @@ public class AssetAssignController {
 		}
 	}
 
-	// Return asset details
+
 	@PutMapping("{assetId}/{status}")
 	ResponseVO returnAsset(@PathVariable Long assetId, @PathVariable String status,
 			@RequestBody AssetAssignVO assetAssignVO) {
