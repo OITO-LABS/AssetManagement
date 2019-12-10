@@ -87,7 +87,7 @@ public class AssetDaoImpl implements AssetDao {
 	public PageData getAssetDetails(PaginationVO paginationVO) {
 
 		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit());
-		final Optional<String> productName = paginationVO.getSearchkey();
+		final String productName = paginationVO.getSearchkey();
 		final Page asset = assetAssignRepository.findSelectedField(productName, pageable);
 
 		final List<Object[]> assetList = asset.getContent();

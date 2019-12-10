@@ -49,6 +49,11 @@ public class Employee {
 	private Status status;
 	@Column(name = "emp_no")
 	private String empNo;
+	@Column(name ="joining_date")
+	private String joiningDate;
+	@Column(name ="termination_date")
+	private String terminationDate;
+	
 
 }
 

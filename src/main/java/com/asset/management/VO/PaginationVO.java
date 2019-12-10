@@ -1,16 +1,16 @@
 
 package com.asset.management.VO;
 
-import java.util.Optional;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class PaginationVO {
-	int page;
-	Optional<String> searchkey;
-	int limit;
+	private int page;
+	private String searchkey;
+	private int limit;
+	private String sortOrder;
+	private String sortKey;
 }
 

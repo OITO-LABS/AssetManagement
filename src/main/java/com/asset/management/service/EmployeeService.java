@@ -3,8 +3,11 @@ package com.asset.management.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
@@ -17,7 +20,7 @@ public interface EmployeeService {
 
 	List<EmployeeVo> selectAll();
 
-	void register(EmployeeVo employee) throws Exception;
+	Long register(EmployeeVo employee) throws Exception;
 
 	void delete(Long id);
 
@@ -31,9 +34,13 @@ public interface EmployeeService {
 
 	Page<Employee> searchEmployee(PaginationVO pagination);
 
-	void remove(String id);
+	void remove(String id) throws Exception;
 
 	List<String> disable(Long login);
+
+	void upload(MultipartFile image, Long id) throws Exception;
+
+	void viewImage(HttpServletResponse response, Long empId) throws Exception;
 	
 	
 

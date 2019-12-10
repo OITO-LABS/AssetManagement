@@ -15,7 +15,7 @@ import com.asset.management.dao.entity.Employee;
 public interface EmployeeDao {
 	List<EmployeeVo> selectAll();
 
-	void register(EmployeeVo employee) throws Exception;
+	Long register(EmployeeVo employee) throws Exception;
 
 	EmployeeVo view(Long id);
 
@@ -23,7 +23,7 @@ public interface EmployeeDao {
 
 	void update(Long id, EmployeeVo obj) throws Exception;
 
-	void remove(String id);
+	void remove(String id) throws Exception;
 
 	Page<Employee> page(PaginationVO pagination);
 
@@ -32,8 +32,6 @@ public interface EmployeeDao {
 	Page<Employee> searchEmployee(PaginationVO pagination);
 
 	List<String> disable(Long login);
-	
-	Optional<Employee> findEmployee(Long empId);
-}
+	}
 
 

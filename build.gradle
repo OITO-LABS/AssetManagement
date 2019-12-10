@@ -46,6 +46,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-mail')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('com.github.spt-oss:spring-boot-starter-security-plus:2.0.2.0')
     // https://mvnrepository.com/artifact/org.springframework/spring-support
 compile group: 'org.springframework', name: 'spring-support', version: '2.0.6'
 // https://mvnrepository.com/artifact/org.springframework/spring-context-support

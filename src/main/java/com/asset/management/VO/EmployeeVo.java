@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.asset.management.dao.entity.Status;
 
 import lombok.Getter;
@@ -39,5 +41,8 @@ public class EmployeeVo {
 	private String bloodGroup;
 	private Status status;
 	private String empNo;
+	private String joiningDate;
+	private String terminationDate;
+	MultipartFile image;
 }
 

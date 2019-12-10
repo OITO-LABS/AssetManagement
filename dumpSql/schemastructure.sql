@@ -136,7 +136,7 @@ CREATE TABLE `employee_details` (
   UNIQUE KEY `mobile_no` (`mobile_no`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `health_card_no` (`health_card_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=1017 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1019 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ CREATE TABLE `login_details` (
   PRIMARY KEY (`id`),
   KEY `emp_id` (`emp_id`),
   CONSTRAINT `login_details_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee_details` (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,7 +179,7 @@ CREATE TABLE `login_details` (
 
 LOCK TABLES `login_details` WRITE;
 /*!40000 ALTER TABLE `login_details` DISABLE KEYS */;
-INSERT INTO `login_details` VALUES (100,'balu.prabhakaran@oitolabs.io','k+f3i1sCtAcMa127NvYzLw==','Active',NULL,NULL,'admin',1011,'',1011);
+INSERT INTO `login_details` VALUES (100,'balu.prabhakaran@oitolabs.io','hbGIPbkSyBAHWRW7qqE7Jw==','Active',NULL,NULL,'admin',1011,'',1011);
 /*!40000 ALTER TABLE `login_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,4 +247,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-09 11:38:42
+-- Dump completed on 2019-12-09 12:14:43

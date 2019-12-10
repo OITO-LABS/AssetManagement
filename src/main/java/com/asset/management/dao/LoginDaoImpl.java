@@ -1,13 +1,11 @@
 package com.asset.management.dao;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.asset.management.VO.EmployeeVo;
 import com.asset.management.VO.LoginVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.VO.mapping.EmployeeMapping;
@@ -61,9 +59,9 @@ public class LoginDaoImpl implements LoginDao {
 	public LoginVo login(LoginVo logVo) throws Exception{
 		Login log=loginRepository.findByUsername(logVo.getUsername());
 		if(log!=null && log.getPassword().equals(logVo.getPassword())) {
-			DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+			new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 			Calendar calobj = Calendar.getInstance();
-			String password=log.getPassword();
+			log.getPassword();
 			log.setLoginTime(calobj.getTime());
 			return loginMap.loginReConvertion(log);
 		}
@@ -72,7 +70,6 @@ public class LoginDaoImpl implements LoginDao {
 		}
 		
 	}
-
 
 
 	@Override
