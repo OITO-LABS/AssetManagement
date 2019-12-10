@@ -1,31 +1,5 @@
 
-<<<<<<< HEAD
 package com.asset.management.service;
-
-import org.apache.log4j.spi.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import com.asset.management.VO.LoginVo;
-import com.asset.management.VO.Mail;
-import com.asset.management.VO.ResponseVO;
-import com.asset.management.dao.LoginDao;
-import com.asset.management.dao.entity.Employee;
-
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.Base64;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-=======
->>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -174,8 +148,3 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21

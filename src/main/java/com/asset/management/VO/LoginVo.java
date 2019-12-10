@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21
 
 package com.asset.management.VO;
 
 import java.util.Date;
 
 
-import com.asset.management.dao.entity.Employee;
 import com.asset.management.dao.entity.Role;
 import com.asset.management.dao.entity.Status;
 
@@ -31,7 +26,3 @@ public class LoginVo {
 	private ResponseVO response;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21
