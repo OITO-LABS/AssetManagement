@@ -61,8 +61,12 @@ public class LoginDaoImpl implements LoginDao {
 		if(log!=null && log.getPassword().equals(logVo.getPassword())) {
 			new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 			Calendar calobj = Calendar.getInstance();
+<<<<<<< HEAD
 			log.getPassword();
+=======
+>>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21
 			log.setLoginTime(calobj.getTime());
+			loginRepository.save(log);
 			return loginMap.loginReConvertion(log);
 		}
 		else {

@@ -25,3 +25,7 @@ public interface LoginService {
 	Employee findEmp(String mail) throws Exception;
 
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21

@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 package com.asset.management.service;
 
 import org.apache.log4j.spi.LoggerFactory;
@@ -22,6 +23,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+=======
+>>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -171,3 +174,8 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3efbdbd4f750f942b19c7606cb15846e22475b21
