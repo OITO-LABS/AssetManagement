@@ -55,8 +55,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void remove(String id) throws Exception {
-		daoobj.remove(id);
+	public void remove(String id,EmployeeVo obj) throws Exception {
+		daoobj.remove(id,obj);
 	}
 
 	@Override

@@ -2,11 +2,9 @@ package com.asset.management.VO;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class Mail {
 	private String from;
     private String to;
@@ -16,12 +14,6 @@ public class Mail {
     public Mail() {
     }
 
-    public Mail(String from, String to, String subject, String content) {
-        this.from = from;
-        this.to = to;
-        this.subject = subject;
-        this.content = content;
-    }
     @Override
     public String toString() {
         return "Mail{" +

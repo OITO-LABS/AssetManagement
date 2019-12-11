@@ -1,11 +1,8 @@
-
-
 package com.asset.management.dao;
 
 import java.util.Calendar;
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +24,6 @@ import lombok.ToString;
 @ToString
 @Component
 public class AssetAssignDaoImpl implements AssetAssignDao {
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetDao.class);
 	@Autowired
 	AssetAssignMapper map;
 

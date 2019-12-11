@@ -3,8 +3,6 @@ package com.asset.management.dao;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -42,8 +40,6 @@ public class AssetDaoImpl implements AssetDao {
 	AssetAssignRepository assetAssignRepository;
 	@Autowired
 	private Validation validator;
-
-	private String other;
 
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetDao.class);
 
@@ -88,7 +84,7 @@ public class AssetDaoImpl implements AssetDao {
 
 		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit());
 		final String productName = paginationVO.getSearchkey();
-		final Page asset = assetAssignRepository.findSelectedField(productName, pageable);
+		final Page<Object[]> asset = assetAssignRepository.findSelectedField(productName, pageable);
 
 		final List<Object[]> assetList = asset.getContent();
 		final PageData data = new PageData();
@@ -147,7 +143,8 @@ public class AssetDaoImpl implements AssetDao {
 	@Override
 	public PageData getAllAsset(PaginationVO paginationVO) {
 		final Pageable pageable = PageRequest.of(paginationVO.getPage(), paginationVO.getLimit());
-		final Page asset = assetAssignRepository.findAssetDetails(pageable);
+		@SuppressWarnings("unchecked")
+		final Page<Object[]> asset = (Page<Object[]>) assetAssignRepository.findAssetDetails(pageable);
 		final List<Object[]> assetList = asset.getContent();
 		final PageData data = new PageData();
 		data.setResultSet(AssetListConverter.reConvertion(assetList));

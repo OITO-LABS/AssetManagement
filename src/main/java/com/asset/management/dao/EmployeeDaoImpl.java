@@ -119,11 +119,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	@org.springframework.transaction.annotation.Transactional(propagation = Propagation.REQUIRED)
-	public void remove(String empNo) throws Exception {
+	public void remove(String empNo, EmployeeVo obj) throws Exception {
 		final Employee emp = employeeRepository.findByEmpNo(empNo);
 		List<AssetVO> asset = getAsset(emp.getEmpId());
-		if (asset == null) {
+		if (asset.isEmpty()) {
 			emp.setStatus(Status.Inactive);
+			emp.setTerminationDate(obj.getTerminationDate());
 			employeeRepository.flush();
 		} else {
 			throw new Exception("Return assets before employee resign");

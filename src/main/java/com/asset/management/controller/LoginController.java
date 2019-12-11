@@ -1,31 +1,7 @@
 
 package com.asset.management.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.asset.management.VO.AssetVO;
-
-import com.asset.management.VO.LoginVo;
-
-import com.asset.management.VO.Mail;
-import com.asset.management.VO.ResponseVO;
-import com.asset.management.dao.entity.Employee;
-import com.asset.management.service.LoginService;
-
-
-
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -33,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asset.management.VO.LoginVo;
-
 
 import com.asset.management.VO.Mail;
 import com.asset.management.VO.ResponseVO;
@@ -46,7 +21,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AssetController.class);
+	
 
 	// login
 

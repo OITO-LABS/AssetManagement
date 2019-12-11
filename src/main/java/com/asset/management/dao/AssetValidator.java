@@ -8,12 +8,10 @@ import org.springframework.stereotype.Component;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.dao.entity.AssetEntity;
 import com.asset.management.dao.repository.AssetRepository;
-import com.asset.management.exception.ErrorCode;
 
 @Component
 public class AssetValidator implements Validation {
 
-	private ErrorCode error;
 	@Autowired
 	private AssetRepository assetRepository;
 

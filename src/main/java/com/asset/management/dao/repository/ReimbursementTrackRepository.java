@@ -20,18 +20,18 @@ public interface ReimbursementTrackRepository extends JpaRepository<Reimbursemen
 	List<ReimbursementTrack> getReimbursementId();
 
 	@Query(value = "select * from reimbursement_track t where t.reimbursement_date BETWEEN :startDate AND :endDate", nativeQuery = true)
-	Page getAllBetweenDates(Pageable page, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
+	Page<?> getAllBetweenDates(Pageable page, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 	@Query(value = "select * from reimbursement_track t where emp_no=:empNo", nativeQuery = true)
-	Page findByReimbursementEmpNo(Pageable page, @Param("empNo") String empNo);
+	Page<?> findByReimbursementEmpNo(Pageable page, @Param("empNo") String empNo);
 
 	@Query(value = "select * from reimbursement_track", nativeQuery = true)
-	Page getReimbursementView(Pageable page);
+	Page<?> getReimbursementView(Pageable page);
 
 
 	@Query(value = "select * from reimbursement_track re where emp_no like %?1% ", nativeQuery = true)
-	Page findByReimbursementSearchEmpNo(String searchkey,Pageable pageable);
+	Page<?> findByReimbursementSearchEmpNo(String searchkey,Pageable pageable);
 	
 	@Query(value = "select * from reimbursement_track t where t.reimbursement_date BETWEEN :startDate AND :endDate AND t.emp_no=:empNo", nativeQuery = true)
-	Page findByReimbursementSearchEmpNoDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate,@Param("empNo") String empNo,Pageable pageable);
+	Page<?> findByReimbursementSearchEmpNoDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate,@Param("empNo") String empNo,Pageable pageable);
 }

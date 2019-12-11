@@ -129,9 +129,9 @@ public class EmployeeController {
 	}
 
 	@PutMapping("delete/{id}") // status disable. maintains record
-	public ResponseVO delete(@PathVariable String id) {
+	public ResponseVO delete(@PathVariable String id,@RequestBody EmployeeVo obj) {
 		try {
-		employeeService.remove(id);
+		employeeService.remove(id,obj);
 		status.setStatus("success");
 		}catch(Exception ex) {
 			status.setStatus("Failed!");

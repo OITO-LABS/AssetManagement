@@ -6,13 +6,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
-import com.asset.management.VO.ListPageData;
-import com.asset.management.VO.PageViewVo;
 import com.asset.management.VO.PaginationVO;
 import com.asset.management.dao.entity.Employee;
 
@@ -34,7 +31,7 @@ public interface EmployeeService {
 
 	Page<Employee> searchEmployee(PaginationVO pagination);
 
-	void remove(String id) throws Exception;
+	void remove(String id, EmployeeVo obj) throws Exception;
 
 	List<String> disable(Long login);
 

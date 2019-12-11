@@ -1,10 +1,6 @@
-
-
 package com.asset.management.dao;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 
 import com.asset.management.VO.AssetVO;
@@ -23,7 +19,7 @@ public interface EmployeeDao {
 
 	void update(Long id, EmployeeVo obj) throws Exception;
 
-	void remove(String id) throws Exception;
+	void remove(String id, EmployeeVo obj) throws Exception;
 
 	Page<Employee> page(PaginationVO pagination);
 

@@ -31,14 +31,14 @@ public interface AssetAssignRepository extends JpaRepository<AssetAssignEntity, 
 			+ "		left Join device_assignment ds on ad.asset_id=ds.asset_id and ad.enable_status = ds.assign_status "
 			+ "		left join employee_details e on e.emp_id = ds.emp_id "
 			+ "where ad.enable_status !='Disabled' and ad.product_category_name like %?1% or asset_key like %?1% or emp_fname like %?1% order by ad.asset_id desc", nativeQuery = true, countQuery = "select count(ad.asset_id) as count from asset_details ad left Join device_assignment ds on ad.asset_id = ds.asset_id and ad.enable_status=ds.assign_status left join employee_details e on e.emp_id = ds.emp_id where ad.enable_status!='Disabled'")
-	Page findSelectedField(String productName, @Param("pageable") Pageable pageable);
+	Page<?> findSelectedField(String productName, @Param("pageable") Pageable pageable);
 
 	@Query(value = "select ad.asset_id as assetId,ad.asset_key as assetKey,ad.product_category_name as productCategoryName,ad.enable_status as Status,ad.model as model,e.emp_id as empId,e.emp_no as empNo "
 			+ "		from asset_details ad "
 			+ "		left Join device_assignment ds on ad.asset_id=ds.asset_id and ad.enable_status = ds.assign_status "
 			+ "		left join employee_details e on e.emp_id = ds.emp_id "
 			+ " where ad.enable_status != 'Disabled' order by ad.asset_id desc", nativeQuery = true, countQuery = "select count(ad.asset_id) as count from asset_details ad left Join device_assignment ds on ad.asset_id = ds.asset_id and ad.enable_status=ds.assign_status left join employee_details e on e.emp_id = ds.emp_id where ad.enable_status!='Disabled'")
-	Page findAssetDetails(@Param("pageable") Pageable pageable);
+	Page<?> findAssetDetails(@Param("pageable") Pageable pageable);
 
 	@Query(value = ""
 			+ "select ad.asset_id as assetId,e.emp_id as empId,e.emp_no as empNo,e.emp_fname as fname,e.emp_lname  as lname,ds.issue_date as issueDate,ds.return_date as returnDate,ds.cause as cause "
