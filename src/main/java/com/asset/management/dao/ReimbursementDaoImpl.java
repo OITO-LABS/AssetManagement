@@ -190,12 +190,6 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	@Override
 	public ListPageData getByDate(PageViewVo date) {
 
-//		final Pageable pageable = PageRequest.of(date.getPage(), date.getSize(),
-//				Sort.by("reimbursement_date").descending());
-//		final Page data = reimbursementTrackRepository.getAllBetweenDates(pageable, date.getDateFrom(),
-//				date.getDateTo());
-//		
-
 		Page data;
 		if (date.getSortKey().equals("reimbursementDate")) {
 			date.setSortKey("reimbursement_date");
@@ -301,10 +295,6 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	@Override
 	public ListPageData searchEmployeeId(PageViewVo page) {
 
-//		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
-//				Sort.by("reimbursement_date").descending());
-//		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNo(page.getEmpNo(), pageable);
-
 		Page data;
 		if (page.getSortKey().equals("reimbursementDate")) {
 			page.setSortKey("reimbursement_date");
@@ -348,10 +338,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public ListPageData searchEmployeeDate(PageViewVo page) {
-//		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
-//				Sort.by("reimbursement_date").descending());
-//		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNoDate(page.getDateFrom(),
-//				page.getDateTo(), page.getEmpNo(), pageable);
+
 
 		Page data;
 		if (page.getSortKey().equals("reimbursementDate")) {
@@ -429,7 +416,6 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	public void updateBill(TempVo data) {
 		ReimbursementDetails bill = reimbursementRepository.findByBillId(data.getBillId());
 		bill.setBillDate(data.getBillDate());
-		// bill.setBillNo(data.getBillNo());
 
 	}
 
