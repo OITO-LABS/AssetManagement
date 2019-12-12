@@ -31,13 +31,15 @@ public interface EmployeeService {
 
 	Page<Employee> searchEmployee(PaginationVO pagination);
 
-	void remove(String id, EmployeeVo obj) throws Exception;
+//	void remove(String id, EmployeeVo obj) throws Exception;
 
 	List<String> disable(Long login);
 
 	void upload(MultipartFile image, Long id) throws Exception;
 
 	void viewImage(HttpServletResponse response, Long empId) throws Exception;
+
+	void remove(String id) throws Exception;
 	
 	
 

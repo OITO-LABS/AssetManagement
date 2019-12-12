@@ -1,7 +1,11 @@
 
 package com.asset.management.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.asset.management.VO.LoginVo;
 
 import com.asset.management.VO.Mail;
+import com.asset.management.VO.ProfileVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.dao.entity.Employee;
 import com.asset.management.service.LoginService;
@@ -20,8 +25,28 @@ import com.asset.management.service.LoginService;
 public class LoginController {
 	@Autowired
 	private LoginService loginService;
-
 	
+	@Autowired
+	HttpServletRequest request;
+	
+	@Autowired
+	EmployeeController employee;
+
+	@Autowired
+	HttpServletResponse response;
+	@GetMapping("/activesession")
+	public ProfileVo getSession() {
+		Long empId=(Long)request.getSession().getAttribute("empId");
+		return employee.employeeget(response,empId);
+	}  
+	
+	@GetMapping("/logout")
+	public ResponseVO logout() {
+		request.getSession().invalidate();
+		ResponseVO response=new ResponseVO();
+		response.setStatus("success");
+		return response;
+	}
 
 	// login
 

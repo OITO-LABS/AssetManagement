@@ -3,12 +3,18 @@ spring:
     url: jdbc:mysql://localhost:3306/oitolabs
     username: root
     password: admin
-  
   jpa:
     show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+      
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
@@ -23,3 +29,7 @@ spring:
             enable: true
     protocol: smtp
     test-connection: false
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+    
+    

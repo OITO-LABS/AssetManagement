@@ -134,10 +134,22 @@ public class EmployeeController {
 		return status;
 	}
 
+//	@PutMapping("delete/{id}") // status disable. maintains record
+//	public ResponseVO delete(@PathVariable String id,@RequestBody EmployeeVo obj) {
+//		try {
+//		employeeService.remove(id,obj);
+//		status.setStatus("success");
+//		}catch(Exception ex) {
+//			status.setStatus("Failed!");
+//			status.setMessage(ex.getMessage());
+//		}
+//		return status;
+//	}
+	
 	@PutMapping("delete/{id}") // status disable. maintains record
-	public ResponseVO delete(@PathVariable String id,@RequestBody EmployeeVo obj) {
+	public ResponseVO delete(@PathVariable String id) {
 		try {
-		employeeService.remove(id,obj);
+		employeeService.remove(id);
 		status.setStatus("success");
 		}catch(Exception ex) {
 			status.setStatus("Failed!");
@@ -145,4 +157,5 @@ public class EmployeeController {
 		}
 		return status;
 	}
+	
 }

@@ -34,7 +34,7 @@ public class ReimbursementValidator implements Validator {
 			final ReimbursementVo listData = billData.get(i);
 			final ReimbursementDetails test = reimbursementRepository.findByReimbursementBillNo(listData.getBillNo());
 			if (test != null) {
-				response.setErrorcode(HttpStatus.BAD_REQUEST);
+			
 				response.setStatus("Failed");
 				response.setMessage("BillNo already Exists");
 				status = 1;
@@ -52,7 +52,7 @@ public class ReimbursementValidator implements Validator {
 				response.setStatus("success");
 
 			} else {
-				response.setErrorcode(HttpStatus.BAD_REQUEST);
+				
 				response.setStatus("Failed");
 				response.setMessage("Total cost error ");
 			}

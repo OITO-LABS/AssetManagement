@@ -18,4 +18,7 @@ public interface LoginRepository extends JpaRepository<Login, Long>{
 	@Modifying
 	@Query(value = "Update login_details obj set obj.username=:email where obj.employee_id=:empId", nativeQuery = true)
 	void update(@Param("empId") Long empId,@Param("email") String email);
+
+	void deleteByEmployeeId(Long empId);
+
 }

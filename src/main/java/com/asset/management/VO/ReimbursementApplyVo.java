@@ -18,6 +18,7 @@ public class ReimbursementApplyVo {
 	String empNo;
 	String reimbursementDate;
 	double totalCost;
+	String onbtnClick;
 	List<ReimbursementVo> reimbursementDetails;
 	String reimbursementBills;
 	MultipartFile[] imageData;

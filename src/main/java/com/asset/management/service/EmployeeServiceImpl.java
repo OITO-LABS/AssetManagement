@@ -54,11 +54,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		daoobj.update(id, obj);
 	}
 
-	@Override
-	public void remove(String id,EmployeeVo obj) throws Exception {
-		daoobj.remove(id,obj);
-	}
+//	@Override
+//	public void remove(String id,EmployeeVo obj) throws Exception {
+//		daoobj.remove(id,obj);
+//	}
 
+	@Override
+	public void remove(String id) throws Exception {
+		daoobj.remove(id);
+	}
+	
 	@Override
 	public Page<Employee> page(PaginationVO pagination) {
 		return daoobj.page(pagination);

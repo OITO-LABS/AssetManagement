@@ -83,15 +83,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		logger.info("{}", data);
 		MultipartFile[] file = data.getImageData();
 		int fileSize=file.length;
-		Long id=(long)10002;
 		System.out.println(data.getReimbursementDetails());
-		for (MultipartFile files : data.getImageData()) {
-			
-			
-		}
-		
-		
-		
 		ReimbursementTrackVo trackData = new ReimbursementTrackVo();
 		trackData.setEmpNo(data.getEmpNo());
 		trackData.setReimbursementDate(data.getReimbursementDate());
@@ -130,12 +122,28 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 		final int length = reimbursementDetails.size();
 		logger.info(" list size " + length);
 		for (int i = 0; i < length; i++) {
+			if(data.getOnbtnClick().equals("save"))
+			{
 			reimbursementDetails.get(i).setBillStatus(Status.Save);
+			}
+			else if(data.getOnbtnClick().equals("submit"))
+			{
+				reimbursementDetails.get(i).setBillStatus(Status.Pending);
+			}
+				
 		}
 
 		final ResponseVO returnValue = reimbursementValidator.validate(trackData);
 
 		if (returnValue.getMessage().equals("success")) {
+			if(data.getOnbtnClick().equals("save"))
+			{
+				reimbursementTrack.setReimbursementStatus(Status.Inactive);
+			}
+			else if(data.getOnbtnClick().equals("submit"))
+			{
+				reimbursementTrack.setReimbursementStatus(Status.Pending);
+			}
 			reimbursementTrack.setReimbursementStatus(Status.Inactive);
 			reimbursementTrackRepository.save(reimbursementTrack);
 			for (int i = 0; i < length; i++) {	
@@ -189,6 +197,12 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public ListPageData getByDate(PageViewVo date) {
+
+//		final Pageable pageable = PageRequest.of(date.getPage(), date.getSize(),
+//				Sort.by("reimbursement_date").descending());
+//		final Page data = reimbursementTrackRepository.getAllBetweenDates(pageable, date.getDateFrom(),
+//				date.getDateTo());
+//		
 
 		Page data;
 		if (date.getSortKey().equals("reimbursementDate")) {
@@ -295,6 +309,10 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	@Override
 	public ListPageData searchEmployeeId(PageViewVo page) {
 
+//		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
+//				Sort.by("reimbursement_date").descending());
+//		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNo(page.getEmpNo(), pageable);
+
 		Page data;
 		if (page.getSortKey().equals("reimbursementDate")) {
 			page.setSortKey("reimbursement_date");
@@ -338,7 +356,10 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public ListPageData searchEmployeeDate(PageViewVo page) {
-
+//		final Pageable pageable = PageRequest.of(page.getPage(), page.getSize(),
+//				Sort.by("reimbursement_date").descending());
+//		final Page data = reimbursementTrackRepository.findByReimbursementSearchEmpNoDate(page.getDateFrom(),
+//				page.getDateTo(), page.getEmpNo(), pageable);
 
 		Page data;
 		if (page.getSortKey().equals("reimbursementDate")) {
@@ -407,15 +428,21 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public void addBill(TempVo data) {
-
-		ReimbursementDetails bills = reimbursementRepository.findByBillId(data.getBillId());
+		logger.info("------------------> Add Bill <-----------------------------");
+		//ReimbursementTrackVo trackData= reimbursementTrackRepository.getReimbursementId(data.getReimbursementId());
+//        logger.info("{}",trackData);
+//        System.out.println(trackData);
+        
+		//ReimbursementDetails bills = reimbursementRepository.findByBillId(data.getBillId());
+		
 
 	}
 
 	@Override
 	public void updateBill(TempVo data) {
 		ReimbursementDetails bill = reimbursementRepository.findByBillId(data.getBillId());
-		bill.setBillDate(data.getBillDate());
+	//	bill.setBillDate(data.getBillDate());
+		// bill.setBillNo(data.getBillNo());
 
 	}
 

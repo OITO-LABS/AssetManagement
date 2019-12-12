@@ -11,6 +11,6 @@ import lombok.Setter;
 public class ResponseVO {
 	private String status;
 	private String message;
-	private HttpStatus errorcode;
+	private String errorcode;
 }
 

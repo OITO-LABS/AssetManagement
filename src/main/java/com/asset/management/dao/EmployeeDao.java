@@ -19,7 +19,7 @@ public interface EmployeeDao {
 
 	void update(Long id, EmployeeVo obj) throws Exception;
 
-	void remove(String id, EmployeeVo obj) throws Exception;
+//	void remove(String id, EmployeeVo obj) throws Exception;
 
 	Page<Employee> page(PaginationVO pagination);
 
@@ -28,6 +28,8 @@ public interface EmployeeDao {
 	Page<Employee> searchEmployee(PaginationVO pagination);
 
 	List<String> disable(Long login);
+
+	void remove(String empNo) throws Exception;
 	}
 
 
