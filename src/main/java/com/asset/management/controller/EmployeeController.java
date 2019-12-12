@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.asset.management.VO.AssetVO;
 import com.asset.management.VO.EmployeeVo;
 import com.asset.management.VO.PaginationVO;
+import com.asset.management.VO.ProfileVo;
 import com.asset.management.VO.ResponseVO;
 import com.asset.management.dao.entity.Employee;
 import com.asset.management.service.EmployeeService;
@@ -43,9 +45,13 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<EmployeeVo> employeeget(@PathVariable Long id) {
+	public ProfileVo employeeget(HttpServletResponse response,@PathVariable Long id) {
+		ProfileVo detailsObj=new ProfileVo();
 		final EmployeeVo obj = employeeService.view(id);
-		return ResponseEntity.ok(obj);
+		detailsObj.setEmployeeDetails(obj);
+	//	ClassPathResource imgFile = new ClassPathResource("public/photos/"+ id + ".jpg");
+		detailsObj.setImagePath("/photos/"+ id + ".jpg");
+		return detailsObj;
 	}
 
 	@GetMapping("asset/{id}")

@@ -16,5 +16,7 @@ public class PageViewVo {
 	int page;
 	int size;
 	String empNo;
+	String sortKey;
+	String sortOrder;
 }
 

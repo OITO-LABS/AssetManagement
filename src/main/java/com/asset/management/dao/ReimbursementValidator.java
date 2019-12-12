@@ -39,7 +39,7 @@ public class ReimbursementValidator implements Validator {
 				response.setMessage("BillNo already Exists");
 				status = 1;
 			} else {
-				response.setStatus("success");
+				response.setMessage("success");
 			}
 		}
 		if (status == 0) {

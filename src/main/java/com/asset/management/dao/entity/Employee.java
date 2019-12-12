@@ -54,7 +54,6 @@ public class Employee {
 	@Column(name ="termination_date")
 	private String terminationDate;
 	
-
 }
 
 

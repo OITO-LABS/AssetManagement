@@ -1,7 +1,7 @@
 
 package com.asset.management.VO.mapping;
 
-import java.util.List;
+import java.util.List;   
 
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -20,6 +20,7 @@ public interface ReimbursementMapper {
 	@Mapping(source = "categoryName", target = "categoryName")
 	@Mapping(source = "billNo", target = "billNo")
 	@Mapping(source = "cost", target = "cost")
+	@Mapping(source = "billStatus", target = "billStatus")
 
 	ReimbursementDetails voConversion(ReimbursementVo obj);
 
@@ -30,6 +31,8 @@ public interface ReimbursementMapper {
 
 	@InheritInverseConfiguration
 	List<ReimbursementVo> entityListConvert(List<ReimbursementDetails> obj);
+
+	//List<ReimbursementVo> voListConvertobj(List<Object[]> temp);
 
 }
 

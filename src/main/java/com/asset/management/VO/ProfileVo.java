@@ -2,12 +2,10 @@ package com.asset.management.VO;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-public class CategoryVo {
-
-	String categoryName;
+public class ProfileVo {
+	private EmployeeVo employeeDetails;
+	private String imagePath;
 }

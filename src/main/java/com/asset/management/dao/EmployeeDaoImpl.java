@@ -82,10 +82,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		loginDao.create(emp);
 
 		Long id = (emp.getEmpId());
+		try {
 		Mail obj = new Mail();
 		obj.setTo(emp.getEmail());
 		obj.setToken(loginService.generatePasswordToken(id));
+		System.out.println("Mail sending to : "+ obj.getTo());
 		loginService.sendmail(obj);
+		}catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
 		return emp.getEmpId();
 	}
 

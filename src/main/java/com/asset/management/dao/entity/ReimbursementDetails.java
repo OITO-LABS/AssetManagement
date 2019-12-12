@@ -1,9 +1,15 @@
 
+
+
 package com.asset.management.dao.entity;
+
+import java.math.BigInteger;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,11 +44,17 @@ public class ReimbursementDetails {
 	private String reimbursementDescription;
 
 	@Column(name = "reimbursement_bill_no")
-	private double billNo;
+	private BigInteger billNo;
 
 	@Column(name = "reimbursement_cost")
 	private double cost;
 
 	@Column(name = "category_name")
 	private String categoryName;
+	
+	@Column(name = "bill_status")
+	@Enumerated(EnumType.STRING)
+	private Status billStatus;
 }
+
+
